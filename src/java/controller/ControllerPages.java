@@ -12,6 +12,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import service.ProducerService;
 
 /**
@@ -57,14 +58,17 @@ public class ControllerPages {
         return "pages/contact";
     }
 
-    @RequestMapping(value = "category/{categoryUrl}/{categoryId}.html", method = RequestMethod.GET)
-    public String viewCategory(ModelMap mm, @PathVariable("categoryUrl") String categoryUrl, @PathVariable("categoryId") long categoryId) {
-      
-        return "pages/shop";
+    @RequestMapping(value = "category/{id}.html", method = RequestMethod.GET)
+    public String viewCategory(ModelMap mm, @PathVariable("id") int categoryId) {
+        
+       mm.put("listCategory", categoryService.getAll());
+       mm.put("listProducer", producerService.getAll());
+        mm.put("listProductHot", productService.getListByCategory(categoryId));
+        return "pages/index";
     }
 
-    @RequestMapping(value = "product/{productUrl}/{productId}.html", method = RequestMethod.GET)
-    public String viewProduct(ModelMap mm, @PathVariable("productUrl") String productUrl, @PathVariable("productId") long productId) {
+    @RequestMapping(value = "category/${id}/producer", method = RequestMethod.GET)
+    public String viewProduct(ModelMap mm, @PathVariable("id") int productUrl, @RequestParam("producerid") int productId) {
   
         return "pages/single";
     }
