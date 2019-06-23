@@ -52,5 +52,10 @@ public class ProductServiceImpl implements ProductService {
         return productDAO.totalItem();
     }
 
+    @Override
+    public List<Product> getListByCategoryIDAndProducerName(int categoryId, int producerId) {
+        return  productDAO.getListByCategoryIDAndProducerName(categoryId, producerId);
+    }
+
    
 }

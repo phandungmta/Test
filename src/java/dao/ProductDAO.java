@@ -16,6 +16,7 @@ public interface ProductDAO {
 
     // load list product by category
     public List<Product> getListByCategory(int categoryId);
+    public List<Product> getListByCategoryIDAndProducerName(int categoryId, int producerId);
 
     // load list product by category and limit
     public List<Product> getListByCategoryAndLimit(long categoryId, int limit);

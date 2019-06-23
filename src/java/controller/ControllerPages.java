@@ -64,13 +64,17 @@ public class ControllerPages {
        mm.put("listCategory", categoryService.getAll());
        mm.put("listProducer", producerService.getAll());
         mm.put("listProductHot", productService.getListByCategory(categoryId));
-        return "pages/index";
+        return "pages/detailShop";
     }
 
-    @RequestMapping(value = "category/${id}/producer", method = RequestMethod.GET)
-    public String viewProduct(ModelMap mm, @PathVariable("id") int productUrl, @RequestParam("producerid") int productId) {
+    @RequestMapping(value = "/product/category", method = RequestMethod.GET, params = {"categoryid","producerid"})
+    public String viewProduct(ModelMap mm, @RequestParam(value="categoryid", required = true) int  categoryid ,@RequestParam(value="producerid", required = true) int  producerid) {
+        mm.put("listCategory", categoryService.getAll());
+       mm.put("listProducer", producerService.getAll());
+        mm.put("listProductHot", productService.getListByCategoryIDAndProducerName(categoryid, producerid));
+        return "pages/detailShop";
   
-        return "pages/single";
+        
     }
 
     @RequestMapping(value = "cart.html", method = RequestMethod.GET)
