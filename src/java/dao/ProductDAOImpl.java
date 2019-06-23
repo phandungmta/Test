@@ -118,7 +118,7 @@ public class ProductDAOImpl implements ProductDAO {
         Transaction transaction = null;
         try {
             transaction = session.beginTransaction();
-            Query query = session.createQuery("FROM product WHERE NewProduct = 1");
+            Query query = session.createQuery("FROM Product WHERE NewProduct = 1");
          
             List<Product> list = query.list();
             transaction.commit();

@@ -30,7 +30,7 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-md-2 col-sm-2">
-						<div class="logo"><a href="/Test/index"><img src="~/template/images/logo1.png"></a></div>
+						<div class="logo"><a href="/Test/index"><img src="<c:url value="/resources/images/logo1.png"/>"></a></div>
 					</div>
 					<div class="col-md-10 col-sm-10">
 						<div class="header_top">
