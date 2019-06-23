@@ -66,9 +66,17 @@ public class ControllerPages {
         mm.put("listProductHot", productService.getListByCategory(categoryId));
         return "pages/detailShop";
     }
+    @RequestMapping(value = "producer/{id}.html", method = RequestMethod.GET)
+    public String viewProducer(ModelMap mm, @PathVariable("id") int producerid) {
+        
+       mm.put("listCategory", categoryService.getAll());
+       mm.put("listProducer", producerService.getAll());
+        mm.put("listProductHot", productService.getListByProducer(producerid));
+        return "pages/detailShop";
+    }
 
     @RequestMapping(value = "/product/category", method = RequestMethod.GET, params = {"categoryid","producerid"})
-    public String viewProduct(ModelMap mm, @RequestParam(value="categoryid", required = true) int  categoryid ,@RequestParam(value="producerid", required = true) int  producerid) {
+    public String viewCategoryAndProducer(ModelMap mm, @RequestParam(value="categoryid", required = true) int  categoryid ,@RequestParam(value="producerid", required = true) int  producerid) {
         mm.put("listCategory", categoryService.getAll());
        mm.put("listProducer", producerService.getAll());
         mm.put("listProductHot", productService.getListByCategoryIDAndProducerName(categoryid, producerid));

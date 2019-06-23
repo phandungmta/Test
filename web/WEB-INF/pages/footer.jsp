@@ -23,7 +23,7 @@
 							<ul class="brand_item">
 								<c:forEach var="item" items="${listProducer}" >
                                                                     <li>
-                                                                        <a href="/Test/productgird?idProducer">
+                                                                        <a href="${pageContext.request.contextPath}/producer/${item.id}.html">
                                                                                 <div class="brand-logo"><img src="/Test/resources${item.images}" alt=""></div>
                                                                         </a>
 	
