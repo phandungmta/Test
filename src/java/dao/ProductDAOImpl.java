@@ -6,6 +6,7 @@
 package dao;
 
 import model.Category;
+import model.Producer;
 import model.Product;
 import util.HibernateUtil;
 import java.util.List;
@@ -21,16 +22,16 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class ProductDAOImpl implements ProductDAO {
     @Override
-    public Product find(String Name) {
+    public List<Product> find(String Name) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = null;
         try {
             transaction = session.beginTransaction();
-            Query query = session.createQuery("FROM product WHERE Name like '%'+:Name+'%' ");
-            query.setString("Name", Name);
-            Product obj = (Product) query.uniqueResult();
+            Query query = session.createQuery("FROM Product WHERE Name like :Name");
+            query.setParameter("Name", "%" + Name + "%");
+            List<Product> list = query.list();
             transaction.commit();
-            return obj;
+            return list;
         } catch (Exception ex) {
             if (transaction != null) {
                 transaction.rollback();
@@ -65,7 +66,28 @@ public class ProductDAOImpl implements ProductDAO {
         }
         return null;
     }
-
+    @Override
+    public List<Product> getListByProducer(int producerId) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction transaction = null;
+        try {
+            transaction = session.beginTransaction();
+            Query query = session.createQuery("FROM Product WHERE ProducerID = :producerId");
+            query.setInteger("producerId", producerId);
+            List<Product> list = query.list();
+            transaction.commit();
+            return list;
+        } catch (Exception ex) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            ex.printStackTrace();
+        } finally {
+            session.flush();
+            session.close();
+        }
+        return null;
+    }
     @Override
     public List<Product> getListByCategoryAndLimit(long categoryId, int limit) {
         Session session = HibernateUtil.getSessionFactory().openSession();
@@ -205,12 +227,14 @@ public class ProductDAOImpl implements ProductDAO {
         ProductDAO productDAO = new ProductDAOImpl();
         Product product = new Product();
         Category category = new Category();
+        Producer producer = new Producer();
         product.setCategory(category);
+        product.setProducer(producer);
         productDAO.create(product);
     }
 
     @Override
-    public List<Product> getListByCategoryIDAndProducerName(int categoryId, int producerId) {
+    public List<Product> getListByCategoryIDAndProducer(int categoryId, int producerId) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = null;
         try {
@@ -233,5 +257,30 @@ public class ProductDAOImpl implements ProductDAO {
         }
         return null;
     }
+
+    @Override
+    public Product findById(int productId) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction transaction = null;
+        try {
+            transaction = session.beginTransaction();
+            Query query = session.createQuery("FROM Product WHERE ID = :productId");
+            query.setInteger("productId", productId);
+            Product obj = (Product) query.uniqueResult();
+            transaction.commit();
+            return obj;
+        } catch (Exception ex) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            ex.printStackTrace();
+        } finally {
+            session.flush();
+            session.close();
+        }
+        return null;
+    }
+
+   
     
 }
