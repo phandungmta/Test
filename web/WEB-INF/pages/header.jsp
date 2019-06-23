@@ -47,8 +47,8 @@
 										
 <!--										@if (Session["UsernameMember"] == null)
 										{-->
-											<li><a href="/Test/checkout" class="log">Đăng nhập</a></li>
-											<li><a href="/Test/checkout2" class="reg">Đăng ký</a></li>
+											<li><a href="${pageContext.request.contextPath}/Account/Login.html" class="log">Đăng nhập</a></li>
+											<li><a href="${pageContext.request.contextPath}/Account/Register" class="reg">Đăng ký</a></li>
 }
 <!--										else
 										{

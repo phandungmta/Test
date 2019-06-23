@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import service.AccountSevice;
 import service.ProducerService;
 
 /**
@@ -29,8 +30,11 @@ public class ControllerPages {
     
     @Autowired
     private ProductService productService;
+         @Autowired
+    private AccountSevice accountService;
 
-    @RequestMapping(value = "home.html", method = RequestMethod.GET)
+
+   @RequestMapping(value = "home.html", method = RequestMethod.GET)
     public String viewHome(ModelMap mm, HttpSession session) {
         mm.put("listCategory", categoryService.getAll());
        mm.put("listProducer", producerService.getAll());
@@ -101,6 +105,11 @@ public class ControllerPages {
 //        showMyCart(session);
         return "pages/cart";
     }
+    
+      
+    
+ 
+
     
 //    @RequestMapping(value = "checkout.html", method = RequestMethod.GET)
 //    public String viewCheckout(ModelMap mm, HttpSession session) {
