@@ -13,6 +13,29 @@
         <title>JSP Page</title>
     </head>
     <body>
+        <div class="container_fullwidth">
+			<div class="container">
+				<div class="our-brand">
+					<h3 class="title"><strong>Thương </strong> hiệu</h3>
+					<div class="control"><a id="prev_brand" class="prev" href="#">&lt;</a><a id="next_brand" class="next" href="#">&gt;</a></div>
+					<ul id="braldLogo">
+						<li>
+							<ul class="brand_item">
+								<c:forEach var="item" items="${listProducer}" >
+                                                                    <li>
+                                                                        <a href="/Test/productgird?idProducer">
+                                                                                <div class="brand-logo"><img src="/Test/resources${item.images}" alt=""></div>
+                                                                        </a>
+	
+                                                                    </li>
+                                                                </c:forEach> 
+							</ul>
+						</li>
+					</ul>
+				</div>
+			</div>
+                    </div>
+        <div class="clearfix"></div>
         <div class="footer">
 	<div class="footer-info">
 		<div class="container">

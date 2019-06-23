@@ -37,7 +37,7 @@ public class ControllerPages {
         mm.put("listCategory", categoryService.getAll());
        mm.put("listProducer", producerService.getAll());
         mm.put("listProductHot", productService.getListHot());
-//        mm.put("listProductNew", productService.getListNew());
+        mm.put("listProductNew", productService.getListNew());
        
         return "pages/index";
     }
