@@ -1,9 +1,13 @@
 package controller;
 
 
+import java.util.Enumeration;
+import javassist.bytecode.stackmap.BasicBlock;
+import javax.servlet.ServletContext;
 import service.CategoryService;
 import service.ProductService;
 import javax.servlet.http.HttpSession;
+import javax.servlet.http.HttpSessionContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -11,6 +15,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import service.AccountSevice;
 import service.ProducerService;
 
 /**
@@ -29,9 +34,13 @@ public class ControllerPages {
     
     @Autowired
     private ProductService productService;
-
-    @RequestMapping(value = "home.html", method = RequestMethod.GET)
+         @Autowired
+    private AccountSevice accountService;
+         
+   
+   @RequestMapping(value = "home.html", method = RequestMethod.GET)
     public String viewHome(ModelMap mm, HttpSession session) {
+        if(session.getAttribute("id")==null ) session.setAttribute("id", 0);
         mm.put("listCategory", categoryService.getAll());
        mm.put("listProducer", producerService.getAll());
         mm.put("listProductHot", productService.getListHot());
@@ -102,6 +111,11 @@ public class ControllerPages {
         return "pages/cart";
     }
     
+      
+    
+ 
+
+    
 //    @RequestMapping(value = "checkout.html", method = RequestMethod.GET)
 //    public String viewCheckout(ModelMap mm, HttpSession session) {
 //     
@@ -125,3 +139,4 @@ public class ControllerPages {
 //    }
 
 }
+>>>>>>> Dung

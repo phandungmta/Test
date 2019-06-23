@@ -1,3 +1,4 @@
+
 <%-- 
     Document   : header
     Created on : Jun 20, 2019, 10:28:12 PM
@@ -47,8 +48,8 @@
 										
 <!--										@if (Session["UsernameMember"] == null)
 										{-->
-											<li><a href="/Test/checkout" class="log">Đăng nhập</a></li>
-											<li><a href="/Test/checkout2" class="reg">Đăng ký</a></li>
+											<li><a href="${pageContext.request.contextPath}/Account/Login.html" class="log">Đăng nhập</a></li>
+											<li><a href="${pageContext.request.contextPath}/Account/Register" class="reg">Đăng ký</a></li>
 }
 <!--										else
 										{
@@ -119,3 +120,4 @@
 </body>
 </html>
 
+>>>>>>> Dung
