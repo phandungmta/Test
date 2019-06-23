@@ -82,12 +82,13 @@
                                                                     <c:forEach var="item" items="${listCategory}" >
                                                                     
                                                                             <li class="dropdown">
-                                                                                   <a href="/Test/index"> ${item.name} cầu lông</a>
+                                                                                   <a href="${pageContext.request.contextPath}/category/${item.id}.html"> ${item.name} cầu lông</a>
                                                                             
                                                                                     <div class="dropdown-menu">
                                                                                             <ul class="mega-menu-links">
                                                                                                 <c:forEach var="jtem" items="${listProducer}" varStatus="status">
-                                                                                                    <li> <a href="/Test/index">  ${item.name}  ${listProducer[status.index].name} </a></li>   
+                                                                                                    
+                                                                                                    <li> <a href="${pageContext.request.contextPath}/product/category?categoryid=${item.id}&producerid=${listProducer[status.index].id} ">  ${item.name}  ${listProducer[status.index].name} </a></li>   
                                                                                              </c:forEach> 
                                                                                             </ul>
                                                                                      </div>

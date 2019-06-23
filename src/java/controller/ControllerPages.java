@@ -12,6 +12,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import service.ProducerService;
 
 /**
@@ -57,16 +58,23 @@ public class ControllerPages {
         return "pages/contact";
     }
 
-    @RequestMapping(value = "category/{categoryUrl}/{categoryId}.html", method = RequestMethod.GET)
-    public String viewCategory(ModelMap mm, @PathVariable("categoryUrl") String categoryUrl, @PathVariable("categoryId") long categoryId) {
-      
-        return "pages/shop";
+    @RequestMapping(value = "category/{id}.html", method = RequestMethod.GET)
+    public String viewCategory(ModelMap mm, @PathVariable("id") int categoryId) {
+        
+       mm.put("listCategory", categoryService.getAll());
+       mm.put("listProducer", producerService.getAll());
+        mm.put("listProductHot", productService.getListByCategory(categoryId));
+        return "pages/detailShop";
     }
 
-    @RequestMapping(value = "product/{productUrl}/{productId}.html", method = RequestMethod.GET)
-    public String viewProduct(ModelMap mm, @PathVariable("productUrl") String productUrl, @PathVariable("productId") long productId) {
+    @RequestMapping(value = "/product/category", method = RequestMethod.GET, params = {"categoryid","producerid"})
+    public String viewProduct(ModelMap mm, @RequestParam(value="categoryid", required = true) int  categoryid ,@RequestParam(value="producerid", required = true) int  producerid) {
+        mm.put("listCategory", categoryService.getAll());
+       mm.put("listProducer", producerService.getAll());
+        mm.put("listProductHot", productService.getListByCategoryIDAndProducerName(categoryid, producerid));
+        return "pages/detailShop";
   
-        return "pages/single";
+        
     }
 
     @RequestMapping(value = "cart.html", method = RequestMethod.GET)

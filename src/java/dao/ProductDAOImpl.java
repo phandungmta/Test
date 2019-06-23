@@ -49,8 +49,8 @@ public class ProductDAOImpl implements ProductDAO {
         Transaction transaction = null;
         try {
             transaction = session.beginTransaction();
-            Query query = session.createQuery("FROM product WHERE categoryID = :categoryId");
-            query.setLong("categoryId", categoryId);
+            Query query = session.createQuery("FROM Product WHERE CategoryID = :categoryId");
+            query.setInteger("categoryId", categoryId);
             List<Product> list = query.list();
             transaction.commit();
             return list;
@@ -207,6 +207,31 @@ public class ProductDAOImpl implements ProductDAO {
         Category category = new Category();
         product.setCategory(category);
         productDAO.create(product);
+    }
+
+    @Override
+    public List<Product> getListByCategoryIDAndProducerName(int categoryId, int producerId) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction transaction = null;
+        try {
+            transaction = session.beginTransaction();
+            Query query = session.createQuery("FROM Product WHERE categoryID = :categoryId AND producerID = :producerId ");
+            query.setInteger("categoryId", categoryId);
+            query.setInteger("producerId", producerId);
+           
+            List<Product> list = query.list();
+            transaction.commit();
+            return list;
+        } catch (Exception ex) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            ex.printStackTrace();
+        } finally {
+            session.flush();
+            session.close();
+        }
+        return null;
     }
     
 }

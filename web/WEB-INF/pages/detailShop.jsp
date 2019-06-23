@@ -5,9 +5,12 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+
     </head>
     <body>
+        <jsp:include page="header.jsp"></jsp:include>
+        
+    
         <div class="clearfix"></div>
 		<div class="hom-slider">			
 			<div class="container">
@@ -65,7 +68,7 @@
 		<div class="container_fullwidth">
 			<div class="container">
 				<div class="hot-products">
-					<h3 class="title"><strong>Sản phẩm</strong> Hot</h3>
+					
 					<div class="control"><a id="prev_hot" class="prev" href="#">&lt;</a><a id="next_hot" class="next" href="#">&gt;</a></div>
 					<ul id="hot">
 						<li>
@@ -74,7 +77,7 @@
                                                             
                                                                     <div class="col-md-3 col-sm-6">
                                                                             <div class="products">
-                                                                                    <div class="offer">Hot</div>
+                                                                                  
                                                                                     <div class="thumbnail">
                                                                                             <a href="/Test/details/@item.ID">
                                                                                                     <img width="150" height="220" src="/Test/resources${item.img}" />
@@ -107,6 +110,10 @@
 			</div>
 		</div>
 		<div class="clearfix"></div>
+                
+        
+        
+         <jsp:include page="footer.jsp"></jsp:include>
 
     </body>
 </html>
