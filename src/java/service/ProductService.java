@@ -10,12 +10,13 @@ import java.util.List;
 public interface ProductService {
 
      // find by id
-    public Product find(String Name);
+    public Product findById(int productId);
+    public List<Product> find(String Name);
 
     // load list product by category
     public List<Product> getListByCategory(int categoryId);
     public List<Product> getListByProducer(int producerId);
-    public List<Product> getListByCategoryIDAndProducerName(int categoryId, int producerId);
+    public List<Product> getListByCategoryIDAndProducer(int categoryId, int producerId);
 
     public boolean create(Product object);  
 

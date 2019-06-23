@@ -76,11 +76,11 @@
                                                                             <div class="products">
                                                                                     <div class="offer">Hot</div>
                                                                                     <div class="thumbnail">
-                                                                                            <a href="/Test/details/@item.ID">
-                                                                                                    <img width="150" height="220" src="/Test/resources${item.img}" />
+                                                                                            <a href="${pageContext.request.contextPath}/product/${item.id}.html">
+                                                                                                    <img width="150" height="220" src="${pageContext.request.contextPath}/resources${item.img}" />
                                                                                             </a>
                                                                                     </div>
-                                                                                    <div class="productname">${item.name}</div>
+                                                                                    <div class="productname"> <a href="${pageContext.request.contextPath}/product/${item.id}.html">${item.name}</a></div>
                                                                                     <h4 class="price">${item.price}</h4>
                                                                                     <div class="button_group"><a href="/Test/AddToCart?productId=@item.ID&quantity=1" class="btn btn-success">Add To Cart</a></div>
                                                                             </div>
@@ -101,10 +101,10 @@
                                                             
                                                                     <div class="col-md-3 col-sm-6">
                                                                             <div class="products">
-                                                                                    <div class="offer">Hot</div>
+                                                                                    <div class="offer">New</div>
                                                                                     <div class="thumbnail">
-                                                                                            <a href="/Test/details/@item.ID">
-                                                                                                    <img width="150" height="220" src="/Test/resources${item.img}" />
+                                                                                            <a href="${pageContext.request.contextPath}/product/${item.id}.html">
+                                                                                                    <img width="150" height="220" src="${pageContext.request.contextPath}/resources${item.img}" />
                                                                                             </a>
                                                                                     </div>
                                                                                     <div class="productname">${item.name}</div>

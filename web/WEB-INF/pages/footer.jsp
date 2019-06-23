@@ -24,7 +24,7 @@
 								<c:forEach var="item" items="${listProducer}" >
                                                                     <li>
                                                                         <a href="${pageContext.request.contextPath}/producer/${item.id}.html">
-                                                                                <div class="brand-logo"><img src="/Test/resources${item.images}" alt=""></div>
+                                                                            <div class="brand-logo"><img src="${pageContext.request.contextPath}/resources${item.images}" alt=""></div>
                                                                         </a>
 	
                                                                     </li>
@@ -41,7 +41,7 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-md-3">
-                                    <div class="footer-logo"><a href="/Test/index"><img src="<c:url value="/resources/images/logo1.png" />"alt=""></a></div>
+                                    <div class="footer-logo"><a href="${pageContext.request.contextPath}/home.html"><img src="<c:url value="/resources/images/logo1.png" />"alt=""></a></div>
 				</div>
 				<div class="col-md-3 col-sm-6">
 					<h4 class="title">Thông tin <strong>liên hệ</strong></h4>

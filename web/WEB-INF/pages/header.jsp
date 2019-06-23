@@ -7,7 +7,7 @@
 <%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%! String tmpString ; %> 
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -30,7 +30,7 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-md-2 col-sm-2">
-						<div class="logo"><a href="/Test/index"><img src="<c:url value="/resources/images/logo1.png"/>"></a></div>
+						<div class="logo"><a href="${pageContext.request.contextPath}/home.html"><img src="<c:url value="/resources/images/logo1.png"/>"></a></div>
 					</div>
 					<div class="col-md-10 col-sm-10">
 						<div class="header_top">
@@ -64,10 +64,9 @@
 							<ul class="option">
 								<li id="search" class="search">
 									
-<!--									@using (Html.BeginForm("productgird", "Test", FormMethod.Post, new { @id = "search-form" }))
-									{
-										<form><input class="search-submit" type="submit" value=""><input class="search-input" placeholder="Enter your search term..." type="text" value="@ViewBag.SearchTerm" name="SearchTerm"></form>							
-									}-->
+								
+										<form method="get" action="search"><input class="search-submit" type="submit" value=""><input class="search-input" placeholder="Enter your search term..." type="text" name = "name"></form>							
+                                                                	
 								</li>
 								<li class="option-cart">
 									<a href="/Test/cart" class="cart-icon">cart <span class="cart_no"></span></a>

@@ -73,14 +73,14 @@
 					<ul id="hot">
 						<li>
 							<div class="row">
-                                                            <c:forEach var="item" items="${listProductHot}">
+                                                            <c:forEach var="item" items="${listProduct}">
                                                             
                                                                     <div class="col-md-3 col-sm-6">
                                                                             <div class="products">
                                                                                   
                                                                                     <div class="thumbnail">
-                                                                                            <a href="/Test/details/@item.ID">
-                                                                                                    <img width="150" height="220" src="/Test/resources${item.img}" />
+                                                                                            <a href="${pageContext.request.contextPath}/product/${item.id}.html">
+                                                                                                    <img width="150" height="220" src="${pageContext.request.contextPath}/resources${item.img}" />
                                                                                             </a>
                                                                                     </div>
                                                                                     <div class="productname">${item.name}</div>
@@ -94,18 +94,7 @@
 					</ul>
 				</div>
 				<div class="clearfix"></div>
-				<div class="featured-products">
-					<h3 class="title"><strong>Sản phẩm</strong> Mới</h3>
-					<div class="control"><a id="prev_featured" class="prev" href="#">&lt;</a><a id="next_featured" class="next" href="#">&gt;</a></div>
-					<ul id="featured">
-						<li>
-							<div class="row">
-<!--								@Html.Action("Newproduct", "Products")-->
-							</div>
-						</li>
-					</ul>
-				</div>
-				<div class="clearfix"></div>
+				
 				
 			</div>
 		</div>
