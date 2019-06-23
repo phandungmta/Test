@@ -7,7 +7,7 @@
 <%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%! String tmpString ; %> 
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -30,7 +30,7 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-md-2 col-sm-2">
-						<div class="logo"><a href="/Test/index"><img src="~/template/images/logo1.png"></a></div>
+						<div class="logo"><a href="${pageContext.request.contextPath}/home.html"><img src="<c:url value="/resources/images/logo1.png"/>"></a></div>
 					</div>
 					<div class="col-md-10 col-sm-10">
 						<div class="header_top">
@@ -64,10 +64,9 @@
 							<ul class="option">
 								<li id="search" class="search">
 									
-<!--									@using (Html.BeginForm("productgird", "Test", FormMethod.Post, new { @id = "search-form" }))
-									{
-										<form><input class="search-submit" type="submit" value=""><input class="search-input" placeholder="Enter your search term..." type="text" value="@ViewBag.SearchTerm" name="SearchTerm"></form>							
-									}-->
+								
+										<form method="get" action="search"><input class="search-submit" type="submit" value=""><input class="search-input" placeholder="Enter your search term..." type="text" name = "name"></form>							
+                                                                	
 								</li>
 								<li class="option-cart">
 									<a href="/Test/cart" class="cart-icon">cart <span class="cart_no"></span></a>
@@ -77,17 +76,18 @@
 							<div class="navbar-header"><button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button></div>
 							<div class="navbar-collapse collapse">
                                                             <ul class="nav navbar-nav">
-                                                                <li><a href="/Test/index">Trang chủ</a></li>
+                                                                <li><a href="${pageContext.request.contextPath}/home.html">Trang chủ</a></li>
                                                                     
                                                                     <c:forEach var="item" items="${listCategory}" >
                                                                     
                                                                             <li class="dropdown">
-                                                                                   <a href="/Test/index"> ${item.name} cầu lông</a>
+                                                                                   <a href="${pageContext.request.contextPath}/category/${item.id}.html"> ${item.name} cầu lông</a>
                                                                             
                                                                                     <div class="dropdown-menu">
                                                                                             <ul class="mega-menu-links">
                                                                                                 <c:forEach var="jtem" items="${listProducer}" varStatus="status">
-                                                                                                    <li> <a href="/Test/index">  ${item.name}  ${listProducer[status.index].name} </a></li>   
+                                                                                                    
+                                                                                                    <li> <a href="${pageContext.request.contextPath}/product/category?categoryid=${item.id}&producerid=${listProducer[status.index].id} ">  ${item.name}  ${listProducer[status.index].name} </a></li>   
                                                                                              </c:forEach> 
                                                                                             </ul>
                                                                                      </div>

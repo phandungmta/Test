@@ -22,7 +22,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public Product find(String Name) {
+    public List<Product> find(String Name) {
         return productDAO.find(Name);
     }
 
@@ -30,7 +30,10 @@ public class ProductServiceImpl implements ProductService {
     public List<Product> getListByCategory(int categoryId) {
         return productDAO.getListByCategory(categoryId);
     }
-
+    @Override
+    public List<Product> getListByProducer(int producerId) {
+        return productDAO.getListByProducer(producerId);
+    }
     @Override
     public List<Product> getListHot() {
 
@@ -50,6 +53,16 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public int totalItem() {
         return productDAO.totalItem();
+    }
+
+    @Override
+    public List<Product> getListByCategoryIDAndProducer(int categoryId, int producerId) {
+        return  productDAO.getListByCategoryIDAndProducer(categoryId, producerId);
+    }
+
+    @Override
+    public Product findById(int productId) {
+        return productDAO.findById(productId);
     }
 
    
