@@ -27,7 +27,7 @@
 						<div class="checkout-page">
 							<ol class="checkout-steps">
 								<li class="steps active">
-									<a href="${pageContext.request.contextPath}/Acoount/Login" class="step-title">
+									<a href="${pageContext.request.contextPath}/Acoount/Login.html" class="step-title">
 										01. Đăng nhập
 									</a>
 									<div class="step-description">
@@ -61,7 +61,7 @@
 													</h5>
                                                                                                     
                                                                                                 
-													<form method="post" action="Account/Login">
+													<form method="post" action="Login.html" >
 														<div class="form-row">
 															<label class="lebel-abs">
 																Tài khoản

@@ -22,7 +22,7 @@ public interface AccountDAO {
     // find by id
     public  model.Account ShowDetail(int accountId);
     
-    public boolean CheckLogin( String UsernameString, String Password);
+    public model.Account CheckLogin( String UsernameString, String Password);
 
     // load list category
  

@@ -40,12 +40,14 @@ public class ControlerAccount {
        
         return "pages/Login";
     }
-     public String CheckLogin(ModelMap mm,@RequestParam("username") String username,@RequestParam("password") String password) {
+    @RequestMapping(value = "Login.html", method = RequestMethod.POST)
+     public String CheckLogin(ModelMap mm,@RequestParam("username") String username,@RequestParam("password") String password ,HttpSession session) {
         mm.put("listCategory", categoryService.getAll());
        mm.put("listProducer", producerService.getAll());
       
         
-        if(!accountService.CheckLogin(username, password)){
+        model.Account account = accountService.CheckLogin(username, password);
+        if(account == null){
             
                mm.put("ERRORLogin", "Login False!");
                return "pages/Login";
@@ -53,7 +55,9 @@ public class ControlerAccount {
           mm.put("listProductHot", productService.getListHot());
         mm.put("listProductNew", productService.getListNew());
         
+        session.setAttribute("account", account);
+        session.setAttribute("id", (int)1);
        
-        return "pages/Login";
+        return "pages/index";
     }
 }

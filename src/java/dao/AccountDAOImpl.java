@@ -5,6 +5,7 @@
  */
 package dao;
 
+import java.util.List;
 import model.Account;
 import model.Category;
 import org.hibernate.Query;
@@ -84,15 +85,17 @@ public class AccountDAOImpl implements AccountDAO{
     }
 
     @Override
-    public boolean CheckLogin(String Username, String Password) {
+    public Account CheckLogin(String Username, String Password) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = null;
         try {
             transaction = session.beginTransaction();
-            Query query = session.createQuery("SELECT count(*) FROM Account WHERE Username = :Username AND Password =: Password");
-                int obj = (int) query.uniqueResult();
+            Query query = session.createQuery("FROM Account WHERE Username = :Username AND Password = :Password");
+                query.setString("Username", Username);
+                    query.setString("Password", Password);
+                 Account obj = (Account) query.uniqueResult();
             transaction.commit();
-            return obj>0;
+            return obj;
         } catch (Exception ex) {
             if (transaction != null) {
                 transaction.rollback();
@@ -102,7 +105,7 @@ public class AccountDAOImpl implements AccountDAO{
             session.flush();
             session.close();
         }
-        return false;
+        return null;
     }
     
 }

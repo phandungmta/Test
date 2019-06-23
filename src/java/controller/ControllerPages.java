@@ -1,9 +1,13 @@
 package controller;
 
 
+import java.util.Enumeration;
+import javassist.bytecode.stackmap.BasicBlock;
+import javax.servlet.ServletContext;
 import service.CategoryService;
 import service.ProductService;
 import javax.servlet.http.HttpSession;
+import javax.servlet.http.HttpSessionContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -32,10 +36,11 @@ public class ControllerPages {
     private ProductService productService;
          @Autowired
     private AccountSevice accountService;
-
-
+         
+   
    @RequestMapping(value = "home.html", method = RequestMethod.GET)
     public String viewHome(ModelMap mm, HttpSession session) {
+        if(session.getAttribute("id")==null ) session.setAttribute("id", 0);
         mm.put("listCategory", categoryService.getAll());
        mm.put("listProducer", producerService.getAll());
         mm.put("listProductHot", productService.getListHot());
