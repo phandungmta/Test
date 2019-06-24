@@ -5,9 +5,12 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+
     </head>
     <body>
+        <jsp:include page="header.jsp"></jsp:include>
+        
+    
         <div class="clearfix"></div>
 		<div class="hom-slider">			
 			<div class="container">
@@ -65,43 +68,16 @@
 		<div class="container_fullwidth">
 			<div class="container">
 				<div class="hot-products">
-					<h3 class="title"><strong>Sản phẩm</strong> Hot</h3>
+					
 					<div class="control"><a id="prev_hot" class="prev" href="#">&lt;</a><a id="next_hot" class="next" href="#">&gt;</a></div>
 					<ul id="hot">
 						<li>
 							<div class="row">
-                                                            <c:forEach var="item" items="${listProductHot}">
+                                                            <c:forEach var="item" items="${listProduct}">
                                                             
                                                                     <div class="col-md-3 col-sm-6">
                                                                             <div class="products">
-                                                                                    <div class="offer">Hot</div>
-                                                                                    <div class="thumbnail">
-                                                                                            <a href="${pageContext.request.contextPath}/product/${item.id}.html">
-                                                                                                    <img width="150" height="220" src="${pageContext.request.contextPath}/resources${item.img}" />
-                                                                                            </a>
-                                                                                    </div>
-                                                                                    <div class="productname"> <a href="${pageContext.request.contextPath}/product/${item.id}.html">${item.name}</a></div>
-                                                                                    <h4 class="price">${item.price} VNĐ</h4>
-                                                                                    <div class="button_group"><a href="${pageContext.request.contextPath}/cart/add/${item.id}.html" class="btn btn-success">Add To Cart</a></div>
-                                                                            </div>
-                                                                    </div>
-                                                            </c:forEach>
-							</div>
-						</li>
-					</ul>
-				</div>
-				<div class="clearfix"></div>
-				<div class="featured-products">
-					<h3 class="title"><strong>Sản phẩm</strong> Mới</h3>
-					<div class="control"><a id="prev_featured" class="prev" href="#">&lt;</a><a id="next_featured" class="next" href="#">&gt;</a></div>
-					<ul id="featured">
-						<li>
-							<div class="row">
-                                                            <c:forEach var="item" items="${listProductNew}">
-                                                            
-                                                                    <div class="col-md-3 col-sm-6">
-                                                                            <div class="products">
-                                                                                    <div class="offer">New</div>
+                                                                                  
                                                                                     <div class="thumbnail">
                                                                                             <a href="${pageContext.request.contextPath}/product/${item.id}.html">
                                                                                                     <img width="150" height="220" src="${pageContext.request.contextPath}/resources${item.img}" />
@@ -119,9 +95,14 @@
 				</div>
 				<div class="clearfix"></div>
 				
+				
 			</div>
 		</div>
 		<div class="clearfix"></div>
+                
+        
+        
+         <jsp:include page="footer.jsp"></jsp:include>
 
     </body>
 </html>

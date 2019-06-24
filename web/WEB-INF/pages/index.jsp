@@ -5,7 +5,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>VN Shop</title>
+        <title>Prokenex Shop</title>
     </head>
 
     <body>

@@ -1,7 +1,7 @@
 package model;
 // Generated May 4, 2019 8:01:01 PM by Hibernate Tools 4.3.5.Final
 
-import java.io.Serializable;
+
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -24,31 +24,30 @@ import javax.persistence.TemporalType;
 public class Account implements java.io.Serializable {
 
 	private Integer id;
-	private Serializable username;
-	private Serializable password;
-	private Serializable fullname;
+	private String username;
+	private String password;
+	private String fullname;
 	private Date birthday;
-	private Serializable sex;
-	private Serializable phoneNumber;
-	private Serializable email;
-	private Serializable address;
-	private Serializable permission;
-	private Serializable active;
+	private String sex;
+	private String phoneNumber;
+	private String email;
+	private String address;
+	private String permission;
+	private String active;
 	private Set<Bill> bills = new HashSet<Bill>(0);
 
 	public Account() {
 	}
 
-	public Account(Serializable username, Serializable password, Serializable fullname, Date birthday) {
+	public Account(String username, String password) {
 		this.username = username;
 		this.password = password;
-		this.fullname = fullname;
-		this.birthday = birthday;
+		
 	}
 
-	public Account(Serializable username, Serializable password, Serializable fullname, Date birthday, Serializable sex,
-			Serializable phoneNumber, Serializable email, Serializable address, Serializable permission,
-			Serializable active, Set<Bill> bills) {
+	public Account(String username, String password, String fullname, Date birthday, String sex,
+			String phoneNumber, String email, String address, String permission,
+			String active, Set<Bill> bills) {
 		this.username = username;
 		this.password = password;
 		this.fullname = fullname;
@@ -75,29 +74,29 @@ public class Account implements java.io.Serializable {
 	}
 
 	@Column(name = "Username", nullable = false)
-	public Serializable getUsername() {
+	public String getUsername() {
 		return this.username;
 	}
 
-	public void setUsername(Serializable username) {
+	public void setUsername(String username) {
 		this.username = username;
 	}
 
 	@Column(name = "Password", nullable = false)
-	public Serializable getPassword() {
+	public String getPassword() {
 		return this.password;
 	}
 
-	public void setPassword(Serializable password) {
+	public void setPassword(String password) {
 		this.password = password;
 	}
 
 	@Column(name = "Fullname", nullable = false)
-	public Serializable getFullname() {
+	public String getFullname() {
 		return this.fullname;
 	}
 
-	public void setFullname(Serializable fullname) {
+	public void setFullname(String fullname) {
 		this.fullname = fullname;
 	}
 
@@ -112,56 +111,56 @@ public class Account implements java.io.Serializable {
 	}
 
 	@Column(name = "Sex")
-	public Serializable getSex() {
+	public String getSex() {
 		return this.sex;
 	}
 
-	public void setSex(Serializable sex) {
+	public void setSex(String sex) {
 		this.sex = sex;
 	}
 
 	@Column(name = "PhoneNumber")
-	public Serializable getPhoneNumber() {
+	public String getPhoneNumber() {
 		return this.phoneNumber;
 	}
 
-	public void setPhoneNumber(Serializable phoneNumber) {
+	public void setPhoneNumber(String phoneNumber) {
 		this.phoneNumber = phoneNumber;
 	}
 
 	@Column(name = "Email")
-	public Serializable getEmail() {
+	public String getEmail() {
 		return this.email;
 	}
 
-	public void setEmail(Serializable email) {
+	public void setEmail(String email) {
 		this.email = email;
 	}
 
 	@Column(name = "Address")
-	public Serializable getAddress() {
+	public String getAddress() {
 		return this.address;
 	}
 
-	public void setAddress(Serializable address) {
+	public void setAddress(String address) {
 		this.address = address;
 	}
 
 	@Column(name = "Permission")
-	public Serializable getPermission() {
+	public String getPermission() {
 		return this.permission;
 	}
 
-	public void setPermission(Serializable permission) {
+	public void setPermission(String permission) {
 		this.permission = permission;
 	}
 
 	@Column(name = "Active")
-	public Serializable getActive() {
+	public String getActive() {
 		return this.active;
 	}
 
-	public void setActive(Serializable active) {
+	public void setActive(String active) {
 		this.active = active;
 	}
 

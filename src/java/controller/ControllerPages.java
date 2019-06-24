@@ -1,17 +1,24 @@
 package controller;
 
 
-import service.CategoryService;
-import service.ProductService;
+import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Map;
+import javassist.bytecode.stackmap.BasicBlock;
+import javax.servlet.ServletContext;
+import service.CategoryService;
+import service.ProductService;
 import javax.servlet.http.HttpSession;
+import javax.servlet.http.HttpSessionContext;
+import model.Cart;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import service.AccountSevice;
 import service.ProducerService;
 
 /**
@@ -30,51 +37,101 @@ public class ControllerPages {
     
     @Autowired
     private ProductService productService;
-
-    @RequestMapping(value = "home.html", method = RequestMethod.GET)
+    @Autowired
+    private AccountSevice accountService;
+         
+   
+   @RequestMapping(value = "home.html", method = RequestMethod.GET)
     public String viewHome(ModelMap mm, HttpSession session) {
+        if(session.getAttribute("id")==null ) session.setAttribute("id", 0);
         mm.put("listCategory", categoryService.getAll());
        mm.put("listProducer", producerService.getAll());
         mm.put("listProductHot", productService.getListHot());
-//        mm.put("listProductNew", productService.getListNew());
-       
+        mm.put("listProductNew", productService.getListNew());
+       showMyCart( session);
         return "pages/index";
     }
+    
 
     @RequestMapping(value = "about.html", method = RequestMethod.GET)
     public String viewAbout(ModelMap mm) {
         return "pages/about";
     }
 
-    @RequestMapping(value = "shop.html", method = RequestMethod.GET)
-    public String viewShop(ModelMap mm) {
    
-        return "pages/shop";
-    }
 
     @RequestMapping(value = "contact.html", method = RequestMethod.GET)
     public String viewContact(ModelMap mm) {
         return "pages/contact";
     }
 
-    @RequestMapping(value = "category/{categoryUrl}/{categoryId}.html", method = RequestMethod.GET)
-    public String viewCategory(ModelMap mm, @PathVariable("categoryUrl") String categoryUrl, @PathVariable("categoryId") long categoryId) {
-      
-        return "pages/shop";
+    @RequestMapping(value = "category/{id}.html", method = RequestMethod.GET)
+    public String viewProductCat(ModelMap mm, @PathVariable("id") int categoryId) {
+        
+       mm.put("listCategory", categoryService.getAll());
+       mm.put("listProducer", producerService.getAll());
+        mm.put("listProduct", productService.getListByCategory(categoryId));
+          
+        return "pages/detailShop";
     }
-
-    @RequestMapping(value = "product/{productUrl}/{productId}.html", method = RequestMethod.GET)
-    public String viewProduct(ModelMap mm, @PathVariable("productUrl") String productUrl, @PathVariable("productId") long productId) {
-  
-        return "pages/single";
+    @RequestMapping(value = "/search")
+    public String Search(ModelMap mm,@RequestParam("name") String name) {
+        
+       mm.put("listCategory", categoryService.getAll());
+       mm.put("listProducer", producerService.getAll());
+        mm.put("listProduct", productService.find(name));
+        return "pages/detailShop";
     }
-
+    @RequestMapping(value = "producer/{id}.html", method = RequestMethod.GET)
+    public String viewProductPro(ModelMap mm, @PathVariable("id") int producerId) {
+        
+       mm.put("listCategory", categoryService.getAll());
+       mm.put("listProducer", producerService.getAll());
+        mm.put("listProduct", productService.getListByProducer(producerId));
+        return "pages/detailShop";
+    }
+    @RequestMapping(value = "/product/category", method = RequestMethod.GET, params = {"categoryid","producerid"})
+    public String viewProduct(ModelMap mm, @RequestParam(value="categoryid", required = true) int  categoryid ,@RequestParam(value="producerid", required = true) int  producerid) {
+        mm.put("listCategory", categoryService.getAll());
+       mm.put("listProducer", producerService.getAll());
+        mm.put("listProduct", productService.getListByCategoryIDAndProducer(categoryid, producerid));
+        return "pages/detailShop";       
+    }
+    
+    @RequestMapping(value = "product/{id}.html", method = RequestMethod.GET)
+    public String viewProduct(ModelMap mm,  @PathVariable("id") int productId) {
+        mm.put("listCategory", categoryService.getAll());
+       mm.put("listProducer", producerService.getAll());
+        mm.put("product", productService.findById(productId));
+        return "pages/ProductDetail";
+    }
     @RequestMapping(value = "cart.html", method = RequestMethod.GET)
     public String viewCart(ModelMap mm, HttpSession session) {
      
 //        showMyCart(session);
         return "pages/cart";
     }
+    
+     private void showMyCart(HttpSession session) {
+        HashMap<Long, Cart> cartItems = (HashMap<Long, Cart>) session.getAttribute("myCartItems");
+        if (cartItems == null) {
+            cartItems = new HashMap<>();
+        }
+        double count = 0;
+        for (Map.Entry<Long, Cart> list : cartItems.entrySet()) {
+            count += list.getValue().getProduct().getPrice() * list.getValue().getQuantity();
+        }
+        session.setAttribute("myCartItems", cartItems);
+        session.setAttribute("myCartTotal", count);
+        session.setAttribute("myCartNum", cartItems.size());
+    }
+    
+     
+     
+      
+    
+ 
+
     
 //    @RequestMapping(value = "checkout.html", method = RequestMethod.GET)
 //    public String viewCheckout(ModelMap mm, HttpSession session) {
