@@ -55,7 +55,7 @@
                                                                                 <c:if test = "${i != 0}">
 										
 											<li><a href="#" class="log">${sessionScope.account.username}</a></li>
-											<li><a href="${pageContext.request.contextPath}/Account/Logout.html" class="log">Đăng xuất</a></li>
+											<li><a href="${pageContext.request.contextPath}/Account/Logout.html" class="reg">Đăng xuất</a></li>
                                                                                 </c:if>
 									</ul>
 								</div>

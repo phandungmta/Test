@@ -18,6 +18,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import service.CategoryService;
+import service.ProducerService;
 import service.ProductService;
 
 /**
@@ -25,13 +27,19 @@ import service.ProductService;
  * @author TVD
  */
 @Controller
-@RequestMapping(value = "/cart")
+@RequestMapping(value = "cart")
 public class ControllerCart {
      @Autowired
     private ProductService productService;
-     
-     @RequestMapping(value = "/add/{id}.html", method = RequestMethod.GET)
+     @Autowired
+    private CategoryService categoryService;
+    
+    @Autowired
+    private ProducerService producerService ;
+    @Autowired
+     @RequestMapping(value = "add/{id}.html", method = RequestMethod.GET)
     public String viewAdd(ModelMap mm, HttpSession session, @PathVariable("id") int productId) {
+        
         HashMap<Integer, Cart> cartItems = (HashMap<Integer, Cart>) session.getAttribute("myCartItems");
         if (cartItems == null) {
             cartItems = new HashMap<>();
@@ -50,10 +58,12 @@ public class ControllerCart {
                 cartItems.put(productId, item);
             }
         }
+        mm.put("listCategory", categoryService.getAll());
+        mm.put("listProducer", producerService.getAll());
         session.setAttribute("myCartItems", cartItems);
         session.setAttribute("myCartTotal", totalPrice(cartItems));
         session.setAttribute("myCartNum", cartItems.size());
-        return "pages/cart";
+        return "pages/Cart";
     }
      public double totalPrice(HashMap<Integer, Cart> cartItems) {
         int count = 0;
