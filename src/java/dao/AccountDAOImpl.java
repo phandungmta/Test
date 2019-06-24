@@ -112,5 +112,31 @@ public class AccountDAOImpl implements AccountDAO{
         }
         return null;
     }
+
+    @Override
+    public boolean CheckUsername(String Username) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction transaction = null;
+
+        try {
+            transaction = session.beginTransaction();
+            Query query = session.createQuery("FROM Account WHERE Username = :Username");
+                query.setString("Username", Username);
+               
+                Account obj = (Account)query.uniqueResult();
+              
+            transaction.commit();
+            return obj!=null;
+        } catch (Exception ex) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            ex.printStackTrace();
+        } finally {
+            session.flush();
+            session.close();
+        }
+        return false;
+    }
     
 }

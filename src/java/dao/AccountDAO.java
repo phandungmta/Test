@@ -23,6 +23,9 @@ public interface AccountDAO {
     public  model.Account ShowDetail(int accountId);
     
     public model.Account CheckLogin( String UsernameString, String Password);
+    public boolean CheckUsername( String UsernameString);
+    
+    
 
     // load list category
  

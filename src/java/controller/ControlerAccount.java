@@ -41,6 +41,24 @@ public class ControlerAccount {
         mm.put("account", new Account());  
         return "pages/Login";
     }
+     @RequestMapping(value = "register.html", method = RequestMethod.GET)
+     public String viewRegister(ModelMap mm, HttpSession session) {
+        mm.put("listCategory", categoryService.getAll());
+        mm.put("listProducer", producerService.getAll());
+        mm.put("userForm", new Account());  
+        return "pages/Register";
+    }
+     @RequestMapping(value = "register.html", method = RequestMethod.POST)
+     public String viewRegister(ModelMap mm, HttpSession session,@ModelAttribute("userForm") Account userForm) {
+        mm.put("listCategory", categoryService.getAll());
+        mm.put("listProducer", producerService.getAll());
+        userForm.setActive("Kích hoạt");
+        userForm.setPermission("User");
+        accountService.create(userForm);
+        
+        return "pages/Register";
+    }
+     
      @RequestMapping(value = "Logout.html", method = RequestMethod.GET)
      public String Logout(ModelMap mm, HttpSession session) {
         mm.put("listCategory", categoryService.getAll());
@@ -49,7 +67,7 @@ public class ControlerAccount {
         mm.put("listProductNew", productService.getListNew());
         session.setAttribute("id", 0);
         session.setAttribute("account", null);
-        return "pages/index";
+        return "redirect:/home.html";
     }
     @RequestMapping(value = "Login.html", method = RequestMethod.POST)
      public String CheckLogin(ModelMap mm, @ModelAttribute("account") Account account ,HttpSession session) {
