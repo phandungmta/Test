@@ -14,6 +14,54 @@
         <title>JSP Page</title>
     </head>
     <body>
+        <script type="text/javascript">
+    function validateForm()
+    {
+        var username=document.forms["formRegister"]["username"].value;
+        var password=document.forms["formRegister"]["password"].value;
+        var fullname=document.forms["formRegister"]["fullname"].value;
+        var birthday=document.forms["formRegister"]["birthday"].value;
+        var phoneNumber=document.forms["formRegister"]["phoneNumber"].value;
+        var email=document.forms["formRegister"]["email"].value;
+        var address=document.forms["formRegister"]["address"].value;
+   
+        if (username==null || username=="",fullname==null || fullname=="",birthday==null || birthday=="",phoneNumber==null || phoneNumber=="",email==null || email=="",password==null || password=="",address==null || address=="")
+        {
+            alert("Please Fill All Required Field");
+            return false;
+        }
+    }
+    function isValidDate()
+{
+    var dateString = document.forms["formRegister"]["birthday"].value;
+    var check = true;
+    // First check for the pattern
+    if(!/^\d{1,2}\/\d{1,2}\/\d{4}$/.test(dateString))
+        check= false;
+
+    // Parse the date parts to integers
+    var parts = dateString.split("/");
+    var day = parseInt(parts[1], 10);
+    var month = parseInt(parts[0], 10);
+    var year = parseInt(parts[2], 10);
+
+    // Check the ranges of month and year
+    if(year < 1000 || year > 3000 || month == 0 || month > 12)
+        check= false;
+
+    var monthLength = [ 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 ];
+
+    // Adjust for leap years
+    if(year % 400 == 0 || (year % 100 != 0 && year % 4 == 0))
+        monthLength[1] = 29;
+
+    // Check the range of the day
+    check=( day > 0 && day <= monthLength[month - 1]);
+    if(!check)  alert("Nhập ngày sinh theo định dạng MM/dd/yyy");
+};
+</script>
+        
+        
         <jsp:include page="header.jsp"></jsp:include>
         <div class="container_fullwidth">
 	<div class="container">
@@ -28,12 +76,12 @@
 							</a>
 						</li>
 						<li class="steps active">
-							<a href="${pageContext.request.contextPath}/Account/register.html" class="step-title">
+							<a href="${pageContext.request.contextPath}/Account/Register.html" class="step-title">
 								02. Đăng ký tài khoản
 							</a>
 							
 								
-                                                        <form:form method="POST" modelAttribute="userForm"  action="register.html">
+                                                        <form:form method="POST" modelAttribute="userForm"  action="${pageContext.request.contextPath}/Account/Register.html" name="formRegister" onsubmit="return validateForm()">
                                                             <div class="row">
 										
 										<div class="col-md-6 col-sm-6">
@@ -55,18 +103,22 @@
 													
 												</div>
 												<div class="form-row">
-                                                                                                    <div class="col-md-2">
-                                                                                                        <label path="birthday">
+                                                                                                 
+                                                                                                        <label path="birthday" class="lebel-abs">
 														Ngày sinh
 														<strong class="red">
 															*
 														</strong>
 													</label>
-                                                                                                    </div>
+                                                                                                  
                                                                                                     
-                                                                                                    <div class="col-md-10">
-                                                                                                        <form:input type="date" path="birthday" class="col-md-10" />
-                                                                                                    </div>
+                                                                                    
+                                                                                                
+                                                                                                    <td><form:input path="birthday" name="timestamp" class="input namefild" value="" onblur="isValidDate()"/>
+                                                                                                         
+    </td>
+                                                                                                      
+                                                                                                 
                                                                                                 
                                                                                                     
 													
@@ -151,6 +203,12 @@
 												<form:button type="submit">
 													Đăng ký
 												</form:button>
+                                                                                                        <div class="alert alert-error alert-dismissable">
+														<button type="button" class="close" data-dismiss="alert">×</button>	
+														<span style="font-size:16px;color:red">
+                                                                                                                    ${messagerRegister}
+														</span>
+													</div>
 												
 											</div>
 										</div>

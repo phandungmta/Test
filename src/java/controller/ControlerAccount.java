@@ -1,13 +1,18 @@
 package controller;
 
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import service.CategoryService;
 import service.ProductService;
 import javax.servlet.http.HttpSession;
 import model.Account;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -41,22 +46,29 @@ public class ControlerAccount {
         mm.put("account", new Account());  
         return "pages/Login";
     }
-     @RequestMapping(value = "register.html", method = RequestMethod.GET)
+     @RequestMapping(value = "Register.html", method = RequestMethod.GET)
      public String viewRegister(ModelMap mm, HttpSession session) {
         mm.put("listCategory", categoryService.getAll());
         mm.put("listProducer", producerService.getAll());
         mm.put("userForm", new Account());  
         return "pages/Register";
     }
-     @RequestMapping(value = "register.html", method = RequestMethod.POST)
-     public String viewRegister(ModelMap mm, HttpSession session,@ModelAttribute("userForm") Account userForm) {
+     @RequestMapping(value = "Register.html", method = RequestMethod.POST)
+     public String Register(ModelMap mm, HttpSession session,@ModelAttribute("userForm") Account userForm) {
         mm.put("listCategory", categoryService.getAll());
         mm.put("listProducer", producerService.getAll());
+        String userNameString= userForm.getUsername();
+        if(!accountService.CheckUsername(userNameString)){
+        mm.put("messagerRegister", "Trùng tên đăng nhập. Đăng ký thất bại !");
+        mm.put("userForm",userForm );  
+        return  "pages/Register";
+        }
         userForm.setActive("Kích hoạt");
         userForm.setPermission("User");
+       
         accountService.create(userForm);
-        
-        return "pages/Register";
+         mm.put("messagerRegister", "Đăng kí thành công!");
+        return "pages/Login";
     }
      
      @RequestMapping(value = "Logout.html", method = RequestMethod.GET)
@@ -82,10 +94,19 @@ public class ControlerAccount {
         }
           mm.put("listProductHot", productService.getListHot());
         mm.put("listProductNew", productService.getListNew());
+     
         
         session.setAttribute("account", acc);
         session.setAttribute("id", (int)1);
        
         return "redirect:/home.html";
     }
+     
+     @InitBinder
+public void initBinder(WebDataBinder binder) {
+    SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
+    
+    sdf.setLenient(true);
+    binder.registerCustomEditor(Date.class, new CustomDateEditor(sdf, true));
+}
 }

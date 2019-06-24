@@ -6,6 +6,7 @@
 package dao;
 
 
+import java.util.List;
 import model.Account;
 
 import org.hibernate.Query;
@@ -123,10 +124,13 @@ public class AccountDAOImpl implements AccountDAO{
             Query query = session.createQuery("FROM Account WHERE Username = :Username");
                 query.setString("Username", Username);
                
-                Account obj = (Account)query.uniqueResult();
+                List<Account> obj = query.list();
               
             transaction.commit();
-            return obj!=null;
+           
+          return  obj.isEmpty();
+               
+          
         } catch (Exception ex) {
             if (transaction != null) {
                 transaction.rollback();

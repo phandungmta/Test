@@ -50,7 +50,7 @@
                                                                               
 										
 											<li><a href="${pageContext.request.contextPath}/Account/Login.html" class="log">Đăng nhập</a></li>
-											<li><a href="${pageContext.request.contextPath}/Account/register.html" class="reg">Đăng ký</a></li>
+											<li><a href="${pageContext.request.contextPath}/Account/Register.html" class="reg">Đăng ký</a></li>
                                                                                 </c:if>
                                                                                 <c:if test = "${i != 0}">
 										

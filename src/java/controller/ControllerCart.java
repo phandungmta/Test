@@ -38,7 +38,7 @@ public class ControllerCart {
     
     @Autowired
     private ProducerService producerService ;
-    @Autowired
+   
      @RequestMapping(value = "add/{id}.html", method = RequestMethod.GET)
     public String viewAdd(ModelMap mm, HttpSession session, @PathVariable("id") int productId) {
         

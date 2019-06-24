@@ -99,7 +99,7 @@
 									</div>
 								</li>
 								<li class="steps">
-									<a href="${pageContext.request.contextPath}/Account/register.html" class="step-title">
+									<a href="${pageContext.request.contextPath}/Account/Register.html" class="step-title">
 										02. Đăng ký tài khoản
 									</a>
 								</li>
