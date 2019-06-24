@@ -72,5 +72,32 @@ public class ControllerCart {
         count = cartItems.entrySet().stream().map((list) -> list.getValue().getProduct().getPrice() * list.getValue().getQuantity()).reduce(count, Integer::sum);
         return count;
     }
-    
+    @RequestMapping(value = "viewcart.html", method = RequestMethod.GET)
+    public String viewcart(ModelMap mm) {
+        mm.put("listCategory", categoryService.getAll());
+        mm.put("listProducer", producerService.getAll());
+        return "pages/Cart";
+    }
+    @RequestMapping(value = "deleteallcart.html", method = RequestMethod.GET)
+    public String deleteallcart( HttpSession session) {
+        
+        session.setAttribute("myCartItems", null);
+        session.setAttribute("myCartNum", 0);
+      
+        return "redirect:/cart/viewcart.html";
+    }
+    @RequestMapping(value = "remove/{id}.html", method = RequestMethod.GET)
+    public String viewRemove(HttpSession session, @PathVariable("id") int productId) {
+         HashMap<Integer, Cart> cartItems = ( HashMap<Integer, Cart>) session.getAttribute("myCartItems");
+        if (cartItems == null) {
+            cartItems = new HashMap<>();
+        }
+        if (cartItems.containsKey(productId)) {
+            cartItems.remove(productId);
+        }
+        session.setAttribute("myCartItems", cartItems);
+        session.setAttribute("myCartTotal", totalPrice(cartItems));
+        session.setAttribute("myCartNum", cartItems.size());
+        return "redirect:/cart/viewcart.html";
+    }
 }

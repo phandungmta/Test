@@ -34,7 +34,7 @@
                             <div class="price">
                                     Price :
                                     <span class="new_price">
-                                            ${product.price}
+                                            ${product.price} VNĐ
                                     </span>
 
                             </div>

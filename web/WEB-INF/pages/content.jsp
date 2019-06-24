@@ -81,7 +81,7 @@
                                                                                             </a>
                                                                                     </div>
                                                                                     <div class="productname"> <a href="${pageContext.request.contextPath}/product/${item.id}.html">${item.name}</a></div>
-                                                                                    <h4 class="price">${item.price}</h4>
+                                                                                    <h4 class="price">${item.price} VNĐ</h4>
                                                                                     <div class="button_group"><a href="${pageContext.request.contextPath}/cart/add/${item.id}.html" class="btn btn-success">Add To Cart</a></div>
                                                                             </div>
                                                                     </div>
@@ -108,7 +108,7 @@
                                                                                             </a>
                                                                                     </div>
                                                                                     <div class="productname">${item.name}</div>
-                                                                                    <h4 class="price">${item.price}</h4>
+                                                                                    <h4 class="price">${item.price} VNĐ</h4>
                                                                                     <div class="button_group"><a href="${pageContext.request.contextPath}/cart/add/${item.id}.html" class="btn btn-success">Add To Cart</a></div>
                                                                             </div>
                                                                     </div>

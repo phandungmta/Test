@@ -71,7 +71,7 @@
                                                                 	
 								</li>
 								<li class="option-cart">
-									<a href="/Test/cart" class="cart-icon">cart <span class="cart_no"></span></a>
+									<a href="${pageContext.request.contextPath}/cart/viewcart.html" class="cart-icon">cart <span class="cart_no"></span></a>
 									
 								</li>
 							</ul>
