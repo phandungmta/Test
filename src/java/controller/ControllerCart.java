@@ -5,7 +5,6 @@ package controller;
  * and open the template in the editor.
  */
 
-package controller;
 
 import java.sql.Timestamp;
 import java.util.Date;
