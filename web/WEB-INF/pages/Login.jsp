@@ -31,7 +31,7 @@
 						<div class="checkout-page">
 							<ol class="checkout-steps">
 								<li class="steps active">
-									<a href="${pageContext.request.contextPath}/Acoount/Login.html" class="step-title">
+									<a href="${pageContext.request.contextPath}/Account/Login.html" class="step-title">
 										01. Đăng nhập
 									</a>
 									<div class="step-description">
@@ -67,28 +67,30 @@
                                                                                                 
 													<form:form method="post" action="Login.html" modelAttribute="account">
 														<div class="form-row">
-															<form:label path ="username" class="lebel-abs">
+															<label path ="username" class="lebel-abs">
 																Tài khoản
 																<strong class="red">
 																	*
 																</strong>
-															</form:label>
-															<form:input    path ="username" name="username"/>
+															</label>
+															<input type="text" class="input namefild"  path ="username" name="username">
 														</div>
 
 														<div class="form-row">
-															<form:label path ="password" class="lebel-abs">
+															<label path ="password" class="lebel-abs">
 																Mật khẩu
 																<strong class="red">
 																	*
 																</strong>
-															</form:label>
-															<form:password  path ="password" name="password" />
+															</label>
+															<input type="password" class="input namefild"  path ="password" name="password" >
 														</div>
 														<p class="forgoten" style="color:red ; font-size: 16px">
 															${ERRORLogin}
 														</p>
-														<input type="submit" name="Sign In" value="Login">	
+														<button type="submit">
+															Đăng nhập
+														</button>
                                                                                                         </form:form>
 													
 												</div>

@@ -45,16 +45,18 @@
 								<div class="col-md-3">
 									<ul class="usermenu">
 										
-<!--										@if (Session["UsernameMember"] == null)
-										{-->
+                                                                                <c:set var = "i" scope = "session" value = "${sessionScope.id}"/>
+                                                                                <c:if test = "${i == 0}">
+                                                                              
+										
 											<li><a href="${pageContext.request.contextPath}/Account/Login.html" class="log">Đăng nhập</a></li>
 											<li><a href="${pageContext.request.contextPath}/Account/Register" class="reg">Đăng ký</a></li>
-}
-<!--										else
-										{
-											<li><a href="#" class="log">@Session["UsernameMember"]</a></li>
-											<li><a href="/Test/Logout" class="reg">Đăng xuất</a></li>
-										}-->
+                                                                                </c:if>
+                                                                                <c:if test = "${i != 0}">
+										
+											<li><a href="#" class="log">${sessionScope.account.username}</a></li>
+											<li><a href="${pageContext.request.contextPath}/Account/Logout.html" class="log">Đăng xuất</a></li>
+                                                                                </c:if>
 									</ul>
 								</div>
 							</div>

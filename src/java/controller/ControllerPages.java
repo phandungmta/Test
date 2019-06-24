@@ -48,6 +48,7 @@ public class ControllerPages {
        
         return "pages/index";
     }
+    
 
     @RequestMapping(value = "about.html", method = RequestMethod.GET)
     public String viewAbout(ModelMap mm) {

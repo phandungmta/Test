@@ -5,18 +5,20 @@
  */
 package dao;
 
-import java.util.List;
+
 import model.Account;
-import model.Category;
+
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import util.HibernateUtil;
+import org.springframework.stereotype.Repository;
 
 /**
  *
  * @author PC
  */
+@Repository
 public class AccountDAOImpl implements AccountDAO{
 
     @Override
@@ -88,14 +90,15 @@ public class AccountDAOImpl implements AccountDAO{
     public Account CheckLogin(String Username, String Password) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = null;
+
         try {
             transaction = session.beginTransaction();
             Query query = session.createQuery("FROM Account WHERE Username = :Username AND Password = :Password");
                 query.setString("Username", Username);
-                    query.setString("Password", Password);
-                    List<Account> list = query.list();
-                 //Account obj = (Account) query.uniqueResult();
-                 Account obj = list.get(0);
+                query.setString("Password", Password);
+               
+                Account obj = (Account)query.uniqueResult();
+              
             transaction.commit();
             return obj;
         } catch (Exception ex) {

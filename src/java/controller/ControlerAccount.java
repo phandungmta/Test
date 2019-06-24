@@ -34,21 +34,29 @@ public class ControlerAccount {
          @Autowired
     private AccountSevice accountService;
          
-         @RequestMapping(value = "Login.html", method = RequestMethod.GET)
-    public String viewLogin(ModelMap mm, HttpSession session) {
+    @RequestMapping(value = "Login.html", method = RequestMethod.GET)
+     public String viewLogin(ModelMap mm, HttpSession session) {
         mm.put("listCategory", categoryService.getAll());
-       mm.put("listProducer", producerService.getAll());
-        mm.put("account", new Account());
-      
-       
+        mm.put("listProducer", producerService.getAll());
+        mm.put("account", new Account());  
         return "pages/Login";
+    }
+     @RequestMapping(value = "Logout.html", method = RequestMethod.GET)
+     public String Logout(ModelMap mm, HttpSession session) {
+        mm.put("listCategory", categoryService.getAll());
+        mm.put("listProducer", producerService.getAll());
+         mm.put("listProductHot", productService.getListHot());
+        mm.put("listProductNew", productService.getListNew());
+        session.setAttribute("id", 0);
+        session.setAttribute("account", null);
+        return "pages/index";
     }
     @RequestMapping(value = "Login.html", method = RequestMethod.POST)
      public String CheckLogin(ModelMap mm, @ModelAttribute("account") Account account ,HttpSession session) {
         mm.put("listCategory", categoryService.getAll());
         mm.put("listProducer", producerService.getAll());
              
-        Account acc = accountService.CheckLogin(account.getUsername().toString(), account.getPassword().toString());
+        Account acc = accountService.CheckLogin(account.getUsername(), account.getPassword());
         if(acc == null){
             
                mm.put("ERRORLogin", "Login False!");
