@@ -1,7 +1,7 @@
 package model;
 // Generated May 4, 2019 8:01:01 PM by Hibernate Tools 4.3.5.Final
 
-import java.io.Serializable;
+import java.lang.String;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -28,19 +28,19 @@ public class Bill implements java.io.Serializable {
 	private Integer id;
 	private Account account;
 	private Date date;
-	private Serializable fullname;
-	private Serializable phonenumber;
-	private Serializable address;
-	private Serializable email;
-	private Serializable totalPrice;
-	private Serializable status;
+	private String fullname;
+	private String phonenumber;
+	private String address;
+	private String email;
+	private String totalPrice;
+	private String status;
 	private Set<BillDetails> billDetailses = new HashSet<BillDetails>(0);
 
 	public Bill() {
 	}
 
-	public Bill(Account account, Date date, Serializable fullname, Serializable phonenumber, Serializable address,
-			Serializable totalPrice, Serializable status) {
+	public Bill(Account account, Date date, String fullname, String phonenumber, String address,
+			String totalPrice, String status) {
 		this.account = account;
 		this.date = date;
 		this.fullname = fullname;
@@ -50,8 +50,8 @@ public class Bill implements java.io.Serializable {
 		this.status = status;
 	}
 
-	public Bill(Account account, Date date, Serializable fullname, Serializable phonenumber, Serializable address,
-			Serializable email, Serializable totalPrice, Serializable status, Set<BillDetails> billDetailses) {
+	public Bill(Account account, Date date, String fullname, String phonenumber, String address,
+			String email, String totalPrice, String status, Set<BillDetails> billDetailses) {
 		this.account = account;
 		this.date = date;
 		this.fullname = fullname;
@@ -96,56 +96,56 @@ public class Bill implements java.io.Serializable {
 	}
 
 	@Column(name = "Fullname", nullable = false)
-	public Serializable getFullname() {
+	public String getFullname() {
 		return this.fullname;
 	}
 
-	public void setFullname(Serializable fullname) {
+	public void setFullname(String fullname) {
 		this.fullname = fullname;
 	}
 
 	@Column(name = "Phonenumber", nullable = false)
-	public Serializable getPhonenumber() {
+	public String getPhonenumber() {
 		return this.phonenumber;
 	}
 
-	public void setPhonenumber(Serializable phonenumber) {
+	public void setPhonenumber(String phonenumber) {
 		this.phonenumber = phonenumber;
 	}
 
 	@Column(name = "Address", nullable = false)
-	public Serializable getAddress() {
+	public String getAddress() {
 		return this.address;
 	}
 
-	public void setAddress(Serializable address) {
+	public void setAddress(String address) {
 		this.address = address;
 	}
 
 	@Column(name = "Email")
-	public Serializable getEmail() {
+	public String getEmail() {
 		return this.email;
 	}
 
-	public void setEmail(Serializable email) {
+	public void setEmail(String email) {
 		this.email = email;
 	}
 
 	@Column(name = "TotalPrice", nullable = false)
-	public Serializable getTotalPrice() {
+	public String getTotalPrice() {
 		return this.totalPrice;
 	}
 
-	public void setTotalPrice(Serializable totalPrice) {
+	public void setTotalPrice(String totalPrice) {
 		this.totalPrice = totalPrice;
 	}
 
 	@Column(name = "Status", nullable = false)
-	public Serializable getStatus() {
+	public String getStatus() {
 		return this.status;
 	}
 
-	public void setStatus(Serializable status) {
+	public void setStatus(String status) {
 		this.status = status;
 	}
 

@@ -67,6 +67,9 @@
     
     <bean id="newsTypeDAO" class="dao.NewsTypeDAOImpl" />
     <bean id="newsTypeService" class="service.NewsTypeServiceImpl" />
+    
+    <bean id="billDAO" class="dao.BillDAOImpl" />
+    <bean id="billService" class="service.BillServiceImpl" />
  
     
     
