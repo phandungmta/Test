@@ -4,9 +4,11 @@ package controller;
 import service.CategoryService;
 import service.ProductService;
 import javax.servlet.http.HttpSession;
+import model.Account;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -36,18 +38,18 @@ public class ControlerAccount {
     public String viewLogin(ModelMap mm, HttpSession session) {
         mm.put("listCategory", categoryService.getAll());
        mm.put("listProducer", producerService.getAll());
+        mm.put("account", new Account());
       
        
         return "pages/Login";
     }
     @RequestMapping(value = "Login.html", method = RequestMethod.POST)
-     public String CheckLogin(ModelMap mm,@RequestParam("username") String username,@RequestParam("password") String password ,HttpSession session) {
+     public String CheckLogin(ModelMap mm, @ModelAttribute("account") Account account ,HttpSession session) {
         mm.put("listCategory", categoryService.getAll());
-       mm.put("listProducer", producerService.getAll());
-      
-        
-        model.Account account = accountService.CheckLogin(username, password);
-        if(account == null){
+        mm.put("listProducer", producerService.getAll());
+             
+        Account acc = accountService.CheckLogin(account.getUsername().toString(), account.getPassword().toString());
+        if(acc == null){
             
                mm.put("ERRORLogin", "Login False!");
                return "pages/Login";
@@ -55,7 +57,7 @@ public class ControlerAccount {
           mm.put("listProductHot", productService.getListHot());
         mm.put("listProductNew", productService.getListNew());
         
-        session.setAttribute("account", account);
+        session.setAttribute("account", acc);
         session.setAttribute("id", (int)1);
        
         return "pages/index";

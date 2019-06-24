@@ -93,7 +93,9 @@ public class AccountDAOImpl implements AccountDAO{
             Query query = session.createQuery("FROM Account WHERE Username = :Username AND Password = :Password");
                 query.setString("Username", Username);
                     query.setString("Password", Password);
-                 Account obj = (Account) query.uniqueResult();
+                    List<Account> list = query.list();
+                 //Account obj = (Account) query.uniqueResult();
+                 Account obj = list.get(0);
             transaction.commit();
             return obj;
         } catch (Exception ex) {

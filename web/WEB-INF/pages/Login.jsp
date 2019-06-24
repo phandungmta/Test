@@ -3,8 +3,11 @@
     Created on : Jun 23, 2019, 11:18:43 PM
     Author     : PC
 --%>
-		
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
     "http://www.w3.org/TR/html4/loose.dtd">
 
@@ -12,6 +15,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>VN Shop</title>
+         <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
     </head>
 
     <body>
@@ -61,33 +65,31 @@
 													</h5>
                                                                                                     
                                                                                                 
-													<form method="post" action="Login.html" >
+													<form:form method="post" action="Login.html" modelAttribute="account">
 														<div class="form-row">
-															<label class="lebel-abs">
+															<form:label path ="username" class="lebel-abs">
 																Tài khoản
 																<strong class="red">
 																	*
 																</strong>
-															</label>
-															<input type="text" class="input namefild" name="username" required="true">
+															</form:label>
+															<form:input    path ="username" name="username"/>
 														</div>
 
 														<div class="form-row">
-															<label class="lebel-abs">
+															<form:label path ="password" class="lebel-abs">
 																Mật khẩu
 																<strong class="red">
 																	*
 																</strong>
-															</label>
-															<input type="password" class="input namefild" name="password" required="true">
+															</form:label>
+															<form:password  path ="password" name="password" />
 														</div>
 														<p class="forgoten" style="color:red ; font-size: 16px">
 															${ERRORLogin}
 														</p>
-														<button type="submit">
-															Đăng nhập
-														</button>
-													</form>
+														<input type="submit" name="Sign In" value="Login">	
+                                                                                                        </form:form>
 													
 												</div>
 											</div>
