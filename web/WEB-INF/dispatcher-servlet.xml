@@ -59,8 +59,14 @@
     <bean id="producerDAO" class="dao.ProducerDAOImpl" />
     <bean id="producerService" class="service.ProducerServiceImpl" />
     
-     <bean id="accountDAO" class="dao.AccountDAOImpl" />
+     <bean id="newsDAO" class="dao.NewsDAOImpl" />
+    <bean id="newsService" class="service.NewsServiceImpl" />
+    
+    <bean id="accountDAO" class="dao.AccountDAOImpl" />
     <bean id="accountService" class="service.AccountServiceImpl" />
+    
+    <bean id="newsTypeDAO" class="dao.NewsTypeDAOImpl" />
+    <bean id="newsTypeService" class="service.NewsTypeServiceImpl" />
  
     
     
