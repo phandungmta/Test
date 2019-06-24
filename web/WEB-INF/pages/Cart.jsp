@@ -10,13 +10,15 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Cart</title>
     </head>
     <body>
+        <jsp:include page="header.jsp"></jsp:include>
         <div class="container_fullwidth">
 		<div class="container shopping-cart">
 			<div class="row">
-                            <c:if test="${sessionScope.myCartNum >0 }">
+                            <c:set var = "i" scope = "session" value = "${sessionScope.myCartNum}"/>
+                            <c:if test="${i >0 }">
                                 <div class="col-md-12">
 					<h3 class="title">
 						Giỏ hàng
@@ -47,20 +49,14 @@
 							</tr>
 						</thead>
 					
-                                                <c:if test="${sessionScope.id}">
-                                                    
-                                                </c:if>
-                                                
+                                              
 						<tbody>
                                                     <c:forEach var="map" items="${sessionScope.myCartItems}">
 							
-								index += 1; //tăng lên 1 qua từng vòng lặp
-								tam = (int)item.ProductModel.Price;
-								tien = tam * item.Quantity;
-								total += tien;
+								
 								<tr>
 									<td>
-										<img style="width: 88px ; height: 130px" src="@item.ProductModel.Image" alt="">
+										<img style="width: 88px ; height: 130px" src="${pageContext.request.contextPath}/resources${map.value.product.img}s" alt="">
 									</td>
 									<td>
 										<div class="shop-details">
@@ -89,7 +85,7 @@
 										</h5>
 									</td>
 									<td>
-										<a href="${pageContext.request.contextPath}/cart/remove/${map.value.product.productId}.html" class="btnDelete" data-id="${map.value.product.id}">
+										<a href="${pageContext.request.contextPath}/cart/remove/${map.value.product.id}.html" class="btnDelete" data-id="${map.value.product.id}">
 											<img src="~/Template/images/remove.png" alt="">
 										</a>
 									</td>
@@ -120,5 +116,6 @@
 
 		</div>
 	</div>
+        <jsp:include page="footer.jsp"></jsp:include>
     </body>
 </html>
