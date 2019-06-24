@@ -24,13 +24,13 @@ import service.ProductService;
  * @author TVD
  */
 @Controller
-@RequestMapping(value = "cart")
+@RequestMapping(value = "/cart")
 public class ControllerCart {
      @Autowired
     private ProductService productService;
      
-     @RequestMapping(value = "add/{productId}.html", method = RequestMethod.GET)
-    public String viewAdd(ModelMap mm, HttpSession session, @PathVariable("productId") int productId) {
+     @RequestMapping(value = "/add/{id}.html", method = RequestMethod.GET)
+    public String viewAdd(ModelMap mm, HttpSession session, @PathVariable("id") int productId) {
         HashMap<Integer, Cart> cartItems = (HashMap<Integer, Cart>) session.getAttribute("myCartItems");
         if (cartItems == null) {
             cartItems = new HashMap<>();
