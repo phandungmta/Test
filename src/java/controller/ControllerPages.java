@@ -2,12 +2,15 @@ package controller;
 
 
 import java.util.Enumeration;
+import java.util.HashMap;
+import java.util.Map;
 import javassist.bytecode.stackmap.BasicBlock;
 import javax.servlet.ServletContext;
 import service.CategoryService;
 import service.ProductService;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.HttpSessionContext;
+import model.Cart;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -45,7 +48,7 @@ public class ControllerPages {
        mm.put("listProducer", producerService.getAll());
         mm.put("listProductHot", productService.getListHot());
         mm.put("listProductNew", productService.getListNew());
-       
+       showMyCart( session);
         return "pages/index";
     }
     
@@ -55,11 +58,7 @@ public class ControllerPages {
         return "pages/about";
     }
 
-    @RequestMapping(value = "shop.html", method = RequestMethod.GET)
-    public String viewShop(ModelMap mm) {
    
-        return "pages/shop";
-    }
 
     @RequestMapping(value = "contact.html", method = RequestMethod.GET)
     public String viewContact(ModelMap mm) {
@@ -72,6 +71,7 @@ public class ControllerPages {
        mm.put("listCategory", categoryService.getAll());
        mm.put("listProducer", producerService.getAll());
         mm.put("listProduct", productService.getListByCategory(categoryId));
+          
         return "pages/detailShop";
     }
     @RequestMapping(value = "/search")
@@ -112,6 +112,22 @@ public class ControllerPages {
         return "pages/cart";
     }
     
+     private void showMyCart(HttpSession session) {
+        HashMap<Long, Cart> cartItems = (HashMap<Long, Cart>) session.getAttribute("myCartItems");
+        if (cartItems == null) {
+            cartItems = new HashMap<>();
+        }
+        double count = 0;
+        for (Map.Entry<Long, Cart> list : cartItems.entrySet()) {
+            count += list.getValue().getProduct().getPrice() * list.getValue().getQuantity();
+        }
+        session.setAttribute("myCartItems", cartItems);
+        session.setAttribute("myCartTotal", count);
+        session.setAttribute("myCartNum", cartItems.size());
+    }
+    
+     
+     
       
     
  

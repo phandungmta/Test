@@ -85,7 +85,7 @@
                                                                                     </div>
                                                                                     <div class="productname">${item.name}</div>
                                                                                     <h4 class="price">${item.price}</h4>
-                                                                                    <div class="button_group"><a href="/Test/AddToCart?productId=@item.ID&quantity=1" class="btn btn-success">Add To Cart</a></div>
+                                                                                    <div class="button_group"><a href="${pageContext.request.contextPath}/cart/add/${item.id}.html" class="btn btn-success">Add To Cart</a></div>
                                                                             </div>
                                                                     </div>
                                                             </c:forEach>
