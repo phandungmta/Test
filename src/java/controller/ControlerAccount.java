@@ -68,6 +68,6 @@ public class ControlerAccount {
         session.setAttribute("account", acc);
         session.setAttribute("id", (int)1);
        
-        return "pages/index";
+        return "redirect:/home.html";
     }
 }
