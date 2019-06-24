@@ -39,5 +39,10 @@ public class AccountServiceImpl implements AccountSevice {
     public model.Account CheckLogin(String UsernameString, String Password) {
         return  accountDAO.CheckLogin(UsernameString, Password);
     }
+
+    @Override
+    public boolean CheckUsername(String UsernameString) {
+        return  accountDAO.CheckUsername(UsernameString);
+    }
     
 }

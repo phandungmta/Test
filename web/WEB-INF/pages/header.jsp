@@ -37,25 +37,27 @@
 						<div class="header_top">
 							<div class="row">
 								<div class="col-md-3">  </div>
-								<div class="col-md-6">
+								<div class="col-md-3">
 									<ul class="topmenu">
-										<li><a href="/Test/news">Tin tức</a></li>
+										<li><a href="${pageContext.request.contextPath}/news.html">Tin tức</a></li>
 										<li><a href="/Test/contact">Liên hệ</a></li>
 									</ul>
 								</div>
-								<div class="col-md-3">
+								<div class="col-md-6">
 									<ul class="usermenu">
 										
-<!--										@if (Session["UsernameMember"] == null)
-										{-->
+                                                                                <c:set var = "i" scope = "session" value = "${sessionScope.id}"/>
+                                                                                <c:if test = "${i == 0}">
+                                                                              
+										
 											<li><a href="${pageContext.request.contextPath}/Account/Login.html" class="log">Đăng nhập</a></li>
-											<li><a href="${pageContext.request.contextPath}/Account/Register" class="reg">Đăng ký</a></li>
-}
-<!--										else
-										{
-											<li><a href="#" class="log">@Session["UsernameMember"]</a></li>
-											<li><a href="/Test/Logout" class="reg">Đăng xuất</a></li>
-										}-->
+											<li><a href="${pageContext.request.contextPath}/Account/Register.html" class="reg">Đăng ký</a></li>
+                                                                                </c:if>
+                                                                                <c:if test = "${i != 0}">
+                                                                                        <li><a href="${pageContext.request.contextPath}/myBills.html" class="log">Theo dõi đơn hàng</a></li>
+											<li><a href="#" class="log">${sessionScope.account.username}</a></li>
+											<li><a href="${pageContext.request.contextPath}/Account/Logout.html" class="reg">Đăng xuất</a></li>
+                                                                                </c:if>
 									</ul>
 								</div>
 							</div>
@@ -70,7 +72,7 @@
                                                                 	
 								</li>
 								<li class="option-cart">
-									<a href="/Test/cart" class="cart-icon">cart <span class="cart_no"></span></a>
+									<a href="${pageContext.request.contextPath}/cart/viewcart.html" class="cart-icon">cart <span class="cart_no"></span></a>
 									
 								</li>
 							</ul>
@@ -116,8 +118,9 @@
 	<script type="text/javascript" src="<c:url value="/resources/js/jquery.carouFredSel-6.2.1-packed.js"/>"></script>
 	<script defer src="<c:url value="/resources/js/jquery.flexslider.js"/>"></script>
 	<script type="text/javascript" src="<c:url value="/resources/js/script.min.js"/>"></script>
-
+        <script type="text/javascript" src="<c:url value="/resources/js/jquery.validate.js"/>"></script>
+	<script type="text/javascript" src="<c:url value="/resources/js/jquery.validate.min.js"/>"></script>
 </body>
 </html>
 
->>>>>>> Dung
+

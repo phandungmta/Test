@@ -22,4 +22,5 @@ public interface AccountSevice {
     public  model.Account ShowDetail(int accountId);
     
     public model.Account CheckLogin( String UsernameString, String Password);
+     public boolean CheckUsername( String UsernameString);
 }

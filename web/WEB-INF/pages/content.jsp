@@ -1,4 +1,5 @@
 
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
@@ -81,8 +82,8 @@
                                                                                             </a>
                                                                                     </div>
                                                                                     <div class="productname"> <a href="${pageContext.request.contextPath}/product/${item.id}.html">${item.name}</a></div>
-                                                                                    <h4 class="price">${item.price}</h4>
-                                                                                    <div class="button_group"><a href="/Test/AddToCart?productId=@item.ID&quantity=1" class="btn btn-success">Add To Cart</a></div>
+                                                                                    <h4 class="price">${item.price} VNĐ</h4>
+                                                                                    <div class="button_group"><a href="${pageContext.request.contextPath}/cart/add/${item.id}.html" class="btn btn-success">Add To Cart</a></div>
                                                                             </div>
                                                                     </div>
                                                             </c:forEach>
@@ -108,8 +109,8 @@
                                                                                             </a>
                                                                                     </div>
                                                                                     <div class="productname">${item.name}</div>
-                                                                                    <h4 class="price">${item.price}</h4>
-                                                                                    <div class="button_group"><a href="${pageContext.request.contextPath}/AddToCart?productId=@item.ID&quantity=1" class="btn btn-success">Add To Cart</a></div>
+                                                                                    <h4 class="price">${item.price} VNĐ</h4>
+                                                                                    <div class="button_group"><a href="${pageContext.request.contextPath}/cart/add/${item.id}.html" class="btn btn-success">Add To Cart</a></div>
                                                                             </div>
                                                                     </div>
                                                             </c:forEach>
@@ -125,3 +126,4 @@
 
     </body>
 </html>
+
