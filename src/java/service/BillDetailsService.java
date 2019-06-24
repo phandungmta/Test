@@ -5,16 +5,12 @@
  */
 package service;
 
-import java.util.List;
-import model.Bill;
+import model.BillDetails;
 
 /**
  *
  * @author PC
  */
-public interface BillService {
-    
-    public List<Bill> getBillbyAccountId(int accountId);
-       public boolean create(Bill object);
-    
+public interface BillDetailsService {
+    public boolean create(BillDetails object);
 }

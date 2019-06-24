@@ -117,7 +117,8 @@
 	<script type="text/javascript" src="<c:url value="/resources/js/jquery.carouFredSel-6.2.1-packed.js"/>"></script>
 	<script defer src="<c:url value="/resources/js/jquery.flexslider.js"/>"></script>
 	<script type="text/javascript" src="<c:url value="/resources/js/script.min.js"/>"></script>
-
+        <script type="text/javascript" src="<c:url value="/resources/js/jquery.validate.js"/>"></script>
+	<script type="text/javascript" src="<c:url value="/resources/js/jquery.validate.min.js"/>"></script>
 </body>
 </html>
 

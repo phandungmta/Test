@@ -26,5 +26,10 @@ public class BillServiceImpl implements BillService{
     public List<Bill> getBillbyAccountId(int accountId) {
         return billDAO.getBillbyAccountId(accountId);
     }
+
+    @Override
+    public boolean create(Bill object) {
+        return billDAO.create(object);
+    }
     
 }

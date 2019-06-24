@@ -6,8 +6,8 @@
 package dao;
 
 import java.util.List;
+
 import model.BillDetails;
-import model.Category;
 
 /**
  *
@@ -15,4 +15,5 @@ import model.Category;
  */
 public interface BillDetailsDAO {
     public List<BillDetails> getBillbyAccountId(int accountId);
+    public boolean create(BillDetails object);
 }

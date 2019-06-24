@@ -10,9 +10,27 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
         <title>Cart</title>
     </head>
     <body>
+           <script type="text/javascript">
+    function validateForm()
+    {
+        
+        var fullname=document.forms["formRegister"]["fullname"].value;
+    
+        var phoneNumber=document.forms["formRegister"]["phoneNumber"].value;
+        var email=document.forms["formRegister"]["email"].value;
+        var address=document.forms["formRegister"]["address"].value;
+   
+        if ( fullname==null || fullname=="",phoneNumber==null || phoneNumber=="",email==null || email=="",address==null || address=="")
+        {
+            alert("Please Fill All Required Field");
+            return false;
+        }
+    }
+    </script>
         <jsp:include page="header.jsp"></jsp:include>
         <div class="container_fullwidth">
             <div class="container shopping-cart">
@@ -111,7 +129,10 @@
                         <c:if test = "${j == 0}">
     <!--						using (Html.BeginForm("Payment", "Test", FormMethod.Post))
                                         {-->
-                            <div class="row">
+    
+    
+     
+          <div class="row">
                                     <div class="col-md-4 col-sm-6">
                                             <div class="shippingbox">
                                         <h5>
@@ -121,27 +142,27 @@
                                                 <span style="font-size: 16px ; color: red">Vui lòng điền đầy đủ thông tin dưới đây !</span>
                                         </h5>
 
-                                        <form>
-                                                <label>
+                                         <form:form method="POST" modelAttribute="userForm"  action="${pageContext.request.contextPath}/cart/checkout.html" name="formRegister" onsubmit="return validateForm()">
+                                             <label path="fullname">
                                                         Họ và tên
                                                 </label>
-                                                <input name="shipName" type="text" required>
+                                             <form:input  type="text"  path="fullname" />
                                                 <label>
                                                         Địa chỉ
                                                 </label>
-                                                <input type="text" name="shipAddress" required>
+                                                <form:input type="text" path="address"/>
                                                 <label>
                                                         Email
                                                 </label>
-                                                <input name="shipEmail" type="email" required>
+                                                <form:input type="email"  path="email"/>
                                                 <label>
                                                         Số điện thoại
                                                 </label>
-                                                <input name="shipPhone" type="text" required>
+                                                    <form:input  type="text"  path="phonenumber"/>
                                                 <div class="clearfix">
                                                 </div>
-                                                <input type="hidden" value="@total" name="total" />
-                                        </form>
+                                                <form:input type="hidden" value="${sessionScope.myCartTotal}" name="total" path="totalPrice" />
+                                           
 
                                 </div>
                         </div>
@@ -150,7 +171,7 @@
                                         <h5>
                                                 Đặt hàng với tài khoản của bạn
                                         </h5>
-                                        <form>
+                                        
                                                 <label>
                                                         <span style="font-size: 14px ">Bạn chưa đăng nhập, vui lòng <a href="${pageContext.request.contextPath}/Account/Login.html" style="color:blue" class="log">đăng nhập</a> tại đây!</span>
                                                 </label>
@@ -159,8 +180,9 @@
                                                 </label>
                                                 <div class="clearfix">
                                                 </div>
+                                        
 
-                                        </form>
+
                                 </div>
                         </div>
                         <div class="col-md-4 col-sm-6">
@@ -174,10 +196,13 @@
                                                     ${sessionScope.myCartTotal} VNĐ
                                                 </span>
                                         </div>
-                                        <button class="btn btn-success" type="submit">Tiến hành đặt hàng</button>
+                                                <button class="btn btn-success" type="submit" onsubmit="return validateForm()" onclick="return validateForm()">Tiến hành đặt hàng</button>
                                 </div>
                         </div>
                         </div>
+           </form:form>
+      
+                            
                                                 
                         </c:if>
                         <c:if test = "${j != 0}">
@@ -194,10 +219,10 @@
                                                 ${sessionScope.myCartTotal} VNĐ
                                             </span>
                                     </div>
-<!--									@using (Html.BeginForm("PaymentUserLogin", "Test", FormMethod.Post,null ))
-                                    {-->
+
                                             <input type="hidden" value="@total" name="total" />
-                                            <button class="btn btn-success" type="submit">Tiến hành đặt hàng</button>
+                                            <a href="${pageContext.request.contextPath}/cart/checkout1.html"> <button class="btn btn-success" type="submit"  "  >Tiến hành đặt hàng</button></a>
+                                            
 
 
                                 </div>

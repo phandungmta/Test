@@ -15,4 +15,6 @@ import model.Bill;
  */
 public interface BillDAO {
      public List<Bill> getBillbyAccountId(int accountId);
+      public boolean create(Bill object);
+       public int GetBillIDGenNow();
 }

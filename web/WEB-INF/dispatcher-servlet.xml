@@ -70,6 +70,10 @@
     
     <bean id="billDAO" class="dao.BillDAOImpl" />
     <bean id="billService" class="service.BillServiceImpl" />
+    
+     <bean id="billDetailsDAO" class="dao.BillDetailsDAOImpl" />
+    <bean id="billDetailsService" class="service.BillDetailsServiceImpl" />
+ 
  
     
     

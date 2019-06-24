@@ -25,7 +25,7 @@
         var email=document.forms["formRegister"]["email"].value;
         var address=document.forms["formRegister"]["address"].value;
    
-        if (username==null || username=="",fullname==null || fullname=="",birthday==null || birthday=="",phoneNumber==null || phoneNumber=="",email==null || email=="",password==null || password=="",address==null || address=="")
+        if (username===null || username==="",fullname===null || fullname==="",birthday===null || birthday==="",phoneNumber===null || phoneNumber==="",email===null || email==="",password===null || password==="",address===null || address==="")
         {
             alert("Please Fill All Required Field");
             return false;

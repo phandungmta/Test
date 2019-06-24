@@ -40,5 +40,31 @@ public class BillDAOImpl implements BillDAO {
         }
         return null;
     }
+
+    @Override
+    public boolean create(Bill object) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction transaction = null;
+        try {
+            transaction = session.beginTransaction();
+            session.save(object);
+            transaction.commit();
+            return true;
+        } catch (Exception ex) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            ex.printStackTrace();
+        } finally {
+            session.flush();
+            session.close();
+        }
+        return false;
+    }
+
+    @Override
+    public int GetBillIDGenNow() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }
