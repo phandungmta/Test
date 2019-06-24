@@ -36,13 +36,13 @@
 						<div class="header_top">
 							<div class="row">
 								<div class="col-md-3">  </div>
-								<div class="col-md-6">
+								<div class="col-md-3">
 									<ul class="topmenu">
-										<li><a href="/Test/news">Tin tức</a></li>
+										<li><a href="${pageContext.request.contextPath}/news.html">Tin tức</a></li>
 										<li><a href="/Test/contact">Liên hệ</a></li>
 									</ul>
 								</div>
-								<div class="col-md-3">
+								<div class="col-md-6">
 									<ul class="usermenu">
 										
                                                                                 <c:set var = "i" scope = "session" value = "${sessionScope.id}"/>
@@ -53,7 +53,7 @@
 											<li><a href="${pageContext.request.contextPath}/Account/Register.html" class="reg">Đăng ký</a></li>
                                                                                 </c:if>
                                                                                 <c:if test = "${i != 0}">
-										
+                                                                                        <li><a href="${pageContext.request.contextPath}/myBills.html" class="log">Theo dõi đơn hàng</a></li>
 											<li><a href="#" class="log">${sessionScope.account.username}</a></li>
 											<li><a href="${pageContext.request.contextPath}/Account/Logout.html" class="reg">Đăng xuất</a></li>
                                                                                 </c:if>

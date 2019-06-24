@@ -1,7 +1,7 @@
 package model;
 // Generated May 4, 2019 8:01:01 PM by Hibernate Tools 4.3.5.Final
 
-import java.io.Serializable;
+import java.lang.String;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -24,16 +24,16 @@ public class News implements java.io.Serializable {
 
 	private Integer id;
 	private NewsType newsType;
-	private Serializable title;
+	private String title;
 	private int isPublic;
-	private Serializable content;
-	private Serializable author;
+	private String content;
+	private String author;
 	private Date createdDate;
 
 	public News() {
 	}
 
-	public News(NewsType newsType, Serializable title, int isPublic, Serializable content, Date createdDate) {
+	public News(NewsType newsType, String title, int isPublic, String content, Date createdDate) {
 		this.newsType = newsType;
 		this.title = title;
 		this.isPublic = isPublic;
@@ -41,7 +41,7 @@ public class News implements java.io.Serializable {
 		this.createdDate = createdDate;
 	}
 
-	public News(NewsType newsType, Serializable title, int isPublic, Serializable content, Serializable author,
+	public News(NewsType newsType, String title, int isPublic, String content, String author,
 			Date createdDate) {
 		this.newsType = newsType;
 		this.title = title;
@@ -74,11 +74,11 @@ public class News implements java.io.Serializable {
 	}
 
 	@Column(name = "Title", nullable = false)
-	public Serializable getTitle() {
+	public String getTitle() {
 		return this.title;
 	}
 
-	public void setTitle(Serializable title) {
+	public void setTitle(String title) {
 		this.title = title;
 	}
 
@@ -92,20 +92,20 @@ public class News implements java.io.Serializable {
 	}
 
 	@Column(name = "Content", nullable = false)
-	public Serializable getContent() {
+	public String getContent() {
 		return this.content;
 	}
 
-	public void setContent(Serializable content) {
+	public void setContent(String content) {
 		this.content = content;
 	}
 
 	@Column(name = "Author")
-	public Serializable getAuthor() {
+	public String getAuthor() {
 		return this.author;
 	}
 
-	public void setAuthor(Serializable author) {
+	public void setAuthor(String author) {
 		this.author = author;
 	}
 

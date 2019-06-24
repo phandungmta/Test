@@ -11,5 +11,6 @@ public interface CategoryDAO {
 
     // load list category
     public List<Category> getAll();
+     
     
 }
