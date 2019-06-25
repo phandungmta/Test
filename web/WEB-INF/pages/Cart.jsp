@@ -30,6 +30,10 @@
             return false;
         }
     }
+    
+   
+    }
+    
     </script>
         <jsp:include page="header.jsp"></jsp:include>
         <div class="container_fullwidth">
@@ -43,23 +47,27 @@
                         </h3>
                         <div class="clearfix">
                         </div>
+                            
                         <table class="shop-table">
                             <thead>
                                 <tr>
                                     <th>
                                             Hình ảnh
                                     </th>
-                                    <th>
+                                    <th style="width :350px ">
                                             Tên sản phẩm
                                     </th>
-                                    <th>
+                                    <th style="width :150px ">
                                             Giá bán
                                     </th>
-                                    <th>
+                                    <th style="width :100px ">
                                             Số lượng
                                     </th>
-                                    <th>
+                                    <th style="width :150px ">
                                             Thành tiền
+                                    </th>
+                                    <th>
+                                           Sửa
                                     </th>
                                     <th>
                                             Hủy
@@ -67,16 +75,15 @@
                                 </tr>
                             </thead>
 
-
                                 <tbody>
+                                    
                                     <c:forEach var="map" items="${sessionScope.myCartItems}">
-
-
-                                        <tr>
+                                      
+                                    <tr>
                                                 <td>
                                                         <img style="width: 88px ; height: 130px" src="${pageContext.request.contextPath}/resources${map.value.product.img}" alt="">
                                                 </td>
-                                                <td>
+                                                <td style="width :350px ">
                                                         <div class="shop-details">
                                                                 <div class="productname">
                                                                         ${map.value.product.name}
@@ -85,17 +92,22 @@
 
                                                         </div>
                                                 </td>
-                                                <td>
+                                                <td style="width :150px ">
                                                         <h5>
                                                                 <strong class="red">
                                                                         ${map.value.product.price} VNĐ
                                                                 </strong>
                                                         </h5>
                                                 </td>
-                                                <td>
-                                                        <input type="number" name="textfield" id="textfield" data-id="${map.value.product.id}" value="${map.value.quantity}" min="1" max="5" class="quantity" >
+                                                <td style="width :100px ">
+                                                     <h5>
+                                                                <strong class="red">
+                                                                        ${map.value.quantity}
+                                                                </strong>
+                                                        </h5>
+                                                        
                                                 </td>
-                                                <td>
+                                                <td style="width :150px ">
                                                         <h5>
                                                                 <strong class="red">
                                                                         ${map.value.totalPrice} VNĐ
@@ -103,15 +115,27 @@
                                                         </h5>
                                                 </td>
                                                 <td>
+                                                    <a href="${pageContext.request.contextPath}/cart/edit/${map.value.product.id}.html" class="btn-info"">
+                                                                <img style="width: 30px ; height: 30px"  src="${pageContext.request.contextPath}/resources/images/edi.png" alt="">
+                                                        </a>
+                                                </td>
+                                                <td>
                                                         <a href="${pageContext.request.contextPath}/cart/remove/${map.value.product.id}.html" class="btnDelete" data-id="${map.value.product.id}">
-                                                                <img src="${pageContext.request.contextPath}/resources/images/remove.png" alt="">
+                                                                <img style="width: 30px ; height: 30px"  src="${pageContext.request.contextPath}/resources/images/remove.png" alt="">
                                                         </a>
                                                 </td>
                                             </tr>
+                                    
+                                            
+                                        
+                                        
+
+
+                                        
 
                                         </c:forEach>
                                     </tbody>
-                                    <tfoot>
+                                     <tfoot>
                                             <tr>
                                                     <td colspan="6">
                                                             <a href="${pageContext.request.contextPath}/home.html" class="btn btn-danger pull-left">Tiếp tục mua hàng</a>
@@ -122,6 +146,8 @@
                                             </tr>
                                     </tfoot>
                                 </table>
+                                                            
+                                   
 
                                 <div class="clearfix">
                                 </div>

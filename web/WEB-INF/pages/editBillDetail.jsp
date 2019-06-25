@@ -40,16 +40,16 @@
 
                             </div>
                             <hr class="border">
-                            <form:form method="POST" modelAttribute="oder"  action="${pageContext.request.contextPath}/cart/add.html" name="formRegister" onsubmit="return validateForm()">
+                            <form:form method="POST" modelAttribute="oder"  action="${pageContext.request.contextPath}/cart/edit.html" >
                                 <div class="wided">
                                        <div class="qty">
                                                     <span style="font-size: 20px">Số lượng &nbsp;&nbsp;: </span>
                                                     <form:input type="hidden" name="productId" value="${product.id}" path="id.productId" />
-                                                    <form:input id="qty"  type="number" title="Qty" value="1" min="1" max="5" path="amount"/>
+                                                    <form:input id="qty"  type="number" title="Qty" value="${quantity}" min="1" max="5" path="amount"/>
                                             </div>
                                             <div class="button_group">
-                                                    <button class="btn btn-success" type="submit" onclick="document.getElementById('form-add_to_cart').submit()">
-                                                            Add To Cart
+                                                    <button class="btn btn-success" type="submit" >
+                                                            Edit To Cart
                                                     </button>
                                             </div>
                                     

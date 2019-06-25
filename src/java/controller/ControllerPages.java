@@ -10,6 +10,7 @@ import service.CategoryService;
 import service.ProductService;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.HttpSessionContext;
+import model.BillDetails;
 import model.Cart;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -103,6 +104,7 @@ public class ControllerPages {
         mm.put("listCategory", categoryService.getAll());
        mm.put("listProducer", producerService.getAll());
         mm.put("product", productService.findById(productId));
+        mm.put("oder", new BillDetails());
         return "pages/ProductDetail";
     }
     @RequestMapping(value = "cart.html", method = RequestMethod.GET)
