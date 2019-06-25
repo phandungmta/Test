@@ -56,11 +56,11 @@ public class ControllerBill {
      @RequestMapping(value = "BillDetails/{id}.html", method = RequestMethod.GET)
     public String viewDetails(ModelMap mm, @PathVariable("id") int BillId) {
      
-        mm.put("listCategory", categoryService.getAll());
-       mm.put("listProducer", producerService.getAll());
+     
        
        
        List<BillDetails> list= null;
+       
       list = billDetailsService.getBillDetails(BillId);
        
          for (BillDetails item : list) {
@@ -68,6 +68,8 @@ public class ControllerBill {
              item.setProduct(product);
          }
        mm.put("listDetails", list); 
+          mm.put("listCategory", categoryService.getAll());
+       mm.put("listProducer", producerService.getAll());
         return "pages/BillDetails";
     }
 }
