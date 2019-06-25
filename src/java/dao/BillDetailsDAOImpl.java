@@ -27,7 +27,7 @@ public class BillDetailsDAOImpl implements BillDetailsDAO {
         Transaction transaction = null;
         try {
             transaction = session.beginTransaction();
-            Query query = session.createQuery("Select FROM BillDetails where BillID = :BillId ");
+            Query query = session.createQuery("FROM BillDetails where BillID = :BillId ");
             query.setInteger("BillId", BillId);
             List<BillDetails> list = query.list();
             transaction.commit();
