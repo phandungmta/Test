@@ -14,28 +14,6 @@
         <title>Cart</title>
     </head>
     <body>
-           <script type="text/javascript">
-    function validateForm()
-    {
-        
-        var fullname=document.forms["formRegister"]["fullname"].value;
-    
-        var phoneNumber=document.forms["formRegister"]["phoneNumber"].value;
-        var email=document.forms["formRegister"]["email"].value;
-        var address=document.forms["formRegister"]["address"].value;
-   
-        if ( fullname==null || fullname=="",phoneNumber==null || phoneNumber=="",email==null || email=="",address==null || address=="")
-        {
-            alert("Please Fill All Required Field");
-            return false;
-        }
-        
-    }
-    
-   
-    }
-    
-    </script>
         <jsp:include page="header.jsp"></jsp:include>
         <div class="container_fullwidth">
             <div class="container shopping-cart">
@@ -96,7 +74,7 @@
                                                 <td style="width :150px ">
                                                         <h5>
                                                                 <strong class="red">
-                                                                        ${map.value.product.price} VNĐ
+                                                                        ${map.value.product.price/1000}00 VNĐ
                                                                 </strong>
                                                         </h5>
                                                 </td>
@@ -111,7 +89,7 @@
                                                 <td style="width :150px ">
                                                         <h5>
                                                                 <strong class="red">
-                                                                        ${map.value.totalPrice} VNĐ
+                                                                        ${map.value.totalPrice/1000}00 VNĐ
                                                                 </strong>
                                                         </h5>
                                                 </td>
@@ -160,6 +138,26 @@
     
      
           <div class="row">
+                <script type="text/javascript">
+    function validateForm()
+    {
+        
+        var fullname=document.getElementById("fullname").value;
+        var phoneNumber=document.getElementById("phonenumber").value;
+        var email=document.getElementById("email").value;
+        var address=document.getElementById("address").value;
+   
+        if ( fullname==null || fullname=="",phoneNumber==null || phoneNumber=="",email==null || email=="",address==null || address=="")
+        {
+            alert("Vui lòng điền đầy đủ thông tin !");
+            return false;
+        }
+    }
+    
+   
+    
+    
+    </script>
                                     <div class="col-md-4 col-sm-6">
                                             <div class="shippingbox">
                                         <h5>
@@ -173,19 +171,19 @@
                                              <label path="fullname">
                                                         Họ và tên
                                                 </label>
-                                             <form:input  type="text"  path="fullname" />
+                                             <form:input  type="text"  path="fullname" id="fullname" />
                                                 <label>
                                                         Địa chỉ
                                                 </label>
-                                                <form:input type="text" path="address"/>
+                                                <form:input type="text" path="address" id ="address" />
                                                 <label>
                                                         Email
                                                 </label>
-                                                <form:input type="email"  path="email"/>
+                                                <form:input type="email"  path="email" id="email"/>
                                                 <label>
                                                         Số điện thoại
                                                 </label>
-                                                    <form:input  type="text"  path="phonenumber"/>
+                                                    <form:input  type="text"  path="phonenumber" id="phonenumber"/>
                                                 <div class="clearfix">
                                                 </div>
                                                 <form:input type="hidden" value="${sessionScope.myCartTotal}" name="total" path="totalPrice" />
@@ -220,7 +218,7 @@
                                                         Tổng số tiền
                                                 </h5>
                                                 <span style="font-size: 18px">
-                                                    ${sessionScope.myCartTotal} VNĐ
+                                                    ${sessionScope.myCartTotal/1000}00 VNĐ
                                                 </span>
                                         </div>
                                                 <button class="btn btn-success" type="submit" onsubmit="return validateForm()" onclick="return validateForm()">Tiến hành đặt hàng</button>
@@ -243,7 +241,7 @@
                                                     Tổng số tiền
                                             </h5>
                                             <span style="font-size: 18px">
-                                                ${sessionScope.myCartTotal} VNĐ
+                                                ${sessionScope.myCartTotal/1000}00 VNĐ
                                             </span>
                                     </div>
 
