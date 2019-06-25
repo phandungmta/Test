@@ -1,4 +1,4 @@
-package controller;
+﻿package controller;
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -79,9 +79,23 @@ public class ControllerCart {
         session.setAttribute("myCartItems", cartItems);
         session.setAttribute("myCartTotal", totalPrice(cartItems));
         session.setAttribute("myCartNum", cartItems.size());
+        mm.put("editBill", new BillDetails());
         return "pages/Cart";
     }
-     @RequestMapping(value = "add.html", method = RequestMethod.POST)
+     @RequestMapping(value = "edit/{id}.html", method = RequestMethod.GET)
+    public String viewEdit(ModelMap mm, HttpSession session, @PathVariable("id") int productId) {
+        HashMap<Integer, Cart> cartItems = (HashMap<Integer, Cart>) session.getAttribute("myCartItems");
+        Cart item = cartItems.get(productId);
+        int quantity = item.getQuantity();
+        mm.put("quantity", quantity);
+        mm.put("product", productService.findById(productId));
+        mm.put("listCategory", categoryService.getAll());
+         mm.put("listProducer", producerService.getAll());
+        mm.put("oder", new BillDetails());
+      
+        return "pages/editBillDetail";
+    }
+    @RequestMapping(value = "add.html", method = RequestMethod.POST)
     public String viewAddInDetail(ModelMap mm, HttpSession session, @ModelAttribute("oder") BillDetails bill) {
         
         HashMap<Integer, Cart> cartItems = (HashMap<Integer, Cart>) session.getAttribute("myCartItems");
@@ -107,6 +121,41 @@ public class ControllerCart {
         mm.put("listCategory", categoryService.getAll());
          mm.put("listProducer", producerService.getAll());
         mm.put("userForm", new Bill());
+        mm.put("editBill", new BillDetails());
+        session.setAttribute("myCartItems", cartItems);
+        session.setAttribute("myCartTotal", totalPrice(cartItems));
+        session.setAttribute("myCartNum", cartItems.size());
+        return "pages/Cart";
+    }
+    
+    
+     @RequestMapping(value = "edit.html", method = RequestMethod.POST)
+    public String finishEdit (ModelMap mm, HttpSession session, @ModelAttribute("oder") BillDetails bill) {
+        
+        HashMap<Integer, Cart> cartItems = (HashMap<Integer, Cart>) session.getAttribute("myCartItems");
+        if (cartItems == null) {
+            cartItems = new HashMap<>();
+        }
+        int productId = bill.getId().getProductId();
+        int quantity = bill.getAmount();
+        Product product = productService.findById(productId);
+        if (product != null) {
+            if (cartItems.containsKey(productId)) {
+                Cart item = cartItems.get(productId);
+                item.setProduct(product);
+                item.setQuantity(quantity);
+                cartItems.put(productId, item);
+            } else {
+                Cart item = new Cart();
+                item.setProduct(product);
+                item.setQuantity(quantity);
+                cartItems.put(productId, item);
+            }
+        }
+        mm.put("listCategory", categoryService.getAll());
+         mm.put("listProducer", producerService.getAll());
+        mm.put("userForm", new Bill());
+        mm.put("editBill", new BillDetails());
         session.setAttribute("myCartItems", cartItems);
         session.setAttribute("myCartTotal", totalPrice(cartItems));
         session.setAttribute("myCartNum", cartItems.size());
@@ -122,6 +171,7 @@ public class ControllerCart {
         mm.put("listCategory", categoryService.getAll());
         mm.put("listProducer", producerService.getAll());
         mm.put("userForm", new Bill());
+        mm.put("detailBill", new Bill());
         return "pages/Cart";
     }
     @RequestMapping(value = "deleteallcart.html", method = RequestMethod.GET)
@@ -145,6 +195,7 @@ public class ControllerCart {
         session.setAttribute("myCartItems", cartItems);
         session.setAttribute("myCartTotal", totalPrice(cartItems));
         session.setAttribute("myCartNum", cartItems.size());
+      
         return "redirect:/cart/viewcart.html";
     }
     
