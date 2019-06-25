@@ -22,12 +22,13 @@ import util.HibernateUtil;
 public class BillDetailsDAOImpl implements BillDetailsDAO {
 
     @Override
-    public List<BillDetails> getBillbyAccountId(int accountId) {
+    public List<BillDetails> getBillDetails(int BillId) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = null;
         try {
             transaction = session.beginTransaction();
-            Query query = session.createQuery("FROM BillDetails ");
+            Query query = session.createQuery("Select FROM BillDetails where BillID = :BillId ");
+            query.setInteger("BillId", BillId);
             List<BillDetails> list = query.list();
             transaction.commit();
             return list;

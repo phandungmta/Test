@@ -74,7 +74,38 @@ public class ControllerCart {
             }
         }
         mm.put("listCategory", categoryService.getAll());
-         mm.put("listCategory", categoryService.getAll());
+         mm.put("listProducer", producerService.getAll());
+        mm.put("userForm", new Bill());
+        session.setAttribute("myCartItems", cartItems);
+        session.setAttribute("myCartTotal", totalPrice(cartItems));
+        session.setAttribute("myCartNum", cartItems.size());
+        return "pages/Cart";
+    }
+     @RequestMapping(value = "add.html", method = RequestMethod.POST)
+    public String viewAddInDetail(ModelMap mm, HttpSession session, @ModelAttribute("oder") BillDetails bill) {
+        
+        HashMap<Integer, Cart> cartItems = (HashMap<Integer, Cart>) session.getAttribute("myCartItems");
+        if (cartItems == null) {
+            cartItems = new HashMap<>();
+        }
+        int productId = bill.getId().getProductId();
+        int quantity = bill.getAmount();
+        Product product = productService.findById(productId);
+        if (product != null) {
+            if (cartItems.containsKey(productId)) {
+                Cart item = cartItems.get(productId);
+                item.setProduct(product);
+                item.setQuantity(item.getQuantity() + quantity);
+                cartItems.put(productId, item);
+            } else {
+                Cart item = new Cart();
+                item.setProduct(product);
+                item.setQuantity(quantity);
+                cartItems.put(productId, item);
+            }
+        }
+        mm.put("listCategory", categoryService.getAll());
+         mm.put("listProducer", producerService.getAll());
         mm.put("userForm", new Bill());
         session.setAttribute("myCartItems", cartItems);
         session.setAttribute("myCartTotal", totalPrice(cartItems));
@@ -142,7 +173,7 @@ public class ControllerCart {
         session.setAttribute("myCartItems", cartItems);
         session.setAttribute("myCartTotal", 0);
         session.setAttribute("myCartNum", 0);
-        return "redirect:/home.html";
+        return "redirect:success.html";
     }
     @RequestMapping(value = "checkout1.html", method = RequestMethod.GET)
     public String viewCheckout(ModelMap mm, HttpSession session) {
@@ -181,6 +212,15 @@ public class ControllerCart {
         session.setAttribute("myCartItems", cartItems);
         session.setAttribute("myCartTotal", 0);
         session.setAttribute("myCartNum", 0);
-        return "redirect:/home.html";
+        return "redirect:success.html";
     }
+    @RequestMapping(value = "success.html", method = RequestMethod.GET)
+    public String viewsuccess(ModelMap mm) {
+        mm.put("listCategory", categoryService.getAll());
+        mm.put("listProducer", producerService.getAll());
+        mm.put("listProductHot", productService.getListHot());
+        mm.put("listProductNew", productService.getListNew());
+        return "pages/success";
+    }
+    
 }

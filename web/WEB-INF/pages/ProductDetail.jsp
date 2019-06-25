@@ -5,6 +5,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+            <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
  
     </head>
     <body>
@@ -39,11 +40,12 @@
 
                             </div>
                             <hr class="border">
-                            <div class="wided">
+                            <form:form method="POST" modelAttribute="oder"  action="${pageContext.request.contextPath}/cart/add.html" name="formRegister" onsubmit="return validateForm()">
+                                <div class="wided">
                                        <div class="qty">
                                                     <span style="font-size: 20px">Số lượng &nbsp;&nbsp;: </span>
-                                                    <input type="hidden" name="productId" value="@Model.ID" />
-                                                    <input id="qty"  type="number" title="Qty" value="1" min="1" max="5" name="quantity">
+                                                    <form:input type="hidden" name="productId" value="${product.id}" path="id.productId" />
+                                                    <form:input id="qty"  type="number" title="Qty" value="1" min="1" max="5" path="amount"/>
                                             </div>
                                             <div class="button_group">
                                                     <button class="btn btn-success" type="submit" onclick="document.getElementById('form-add_to_cart').submit()">
@@ -53,6 +55,8 @@
                                     
 
                             </div>
+                            </form:form>
+                            
                             <div class="clearfix">
                             </div>
                             <hr class="border">

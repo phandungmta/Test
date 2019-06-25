@@ -39,7 +39,7 @@
 								<div class="col-md-3">
 									<ul class="topmenu">
 										<li><a href="${pageContext.request.contextPath}/news.html">Tin tức</a></li>
-										<li><a href="/Test/contact">Liên hệ</a></li>
+										<li><a href="${pageContext.request.contextPath}/contact.html">Liên hệ</a></li>
 									</ul>
 								</div>
 								<div class="col-md-6">

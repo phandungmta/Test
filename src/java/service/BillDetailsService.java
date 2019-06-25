@@ -5,6 +5,7 @@
  */
 package service;
 
+import java.util.List;
 import model.BillDetails;
 
 /**
@@ -13,4 +14,5 @@ import model.BillDetails;
  */
 public interface BillDetailsService {
     public boolean create(BillDetails object);
+    public List<BillDetails> getBillDetails(int BillId);
 }
