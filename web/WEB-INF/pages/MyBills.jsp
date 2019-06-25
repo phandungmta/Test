@@ -71,7 +71,7 @@
 									</td>
 									<td>
                                                                            <div class="productname">
-                                                                                            ${item.id}
+                                                                                           <a href="${pageContext.request.contextPath}/BillDetails/${item.id}.html"> ${item.id} </a>
 											
 											</div>
 										

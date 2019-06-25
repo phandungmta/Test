@@ -14,6 +14,7 @@ import model.BillDetails;
  * @author PC
  */
 public interface BillDetailsDAO {
-    public List<BillDetails> getBillbyAccountId(int accountId);
+    public List<BillDetails> getBillDetails(int BillId);
+    
     public boolean create(BillDetails object);
 }

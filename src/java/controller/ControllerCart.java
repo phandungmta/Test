@@ -1,4 +1,4 @@
-package controller;
+﻿package controller;
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -224,7 +224,7 @@ public class ControllerCart {
         session.setAttribute("myCartItems", cartItems);
         session.setAttribute("myCartTotal", 0);
         session.setAttribute("myCartNum", 0);
-        return "redirect:/home.html";
+        return "redirect:success.html";
     }
     @RequestMapping(value = "checkout1.html", method = RequestMethod.GET)
     public String viewCheckout(ModelMap mm, HttpSession session) {
@@ -263,6 +263,15 @@ public class ControllerCart {
         session.setAttribute("myCartItems", cartItems);
         session.setAttribute("myCartTotal", 0);
         session.setAttribute("myCartNum", 0);
-        return "redirect:/home.html";
+        return "redirect:success.html";
     }
+    @RequestMapping(value = "success.html", method = RequestMethod.GET)
+    public String viewsuccess(ModelMap mm) {
+        mm.put("listCategory", categoryService.getAll());
+        mm.put("listProducer", producerService.getAll());
+        mm.put("listProductHot", productService.getListHot());
+        mm.put("listProductNew", productService.getListNew());
+        return "pages/success";
+    }
+    
 }

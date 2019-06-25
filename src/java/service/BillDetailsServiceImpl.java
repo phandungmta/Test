@@ -7,6 +7,7 @@ package service;
 
 import dao.BillDAO;
 import dao.BillDetailsDAO;
+import java.util.List;
 import model.BillDetails;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -22,6 +23,11 @@ public class BillDetailsServiceImpl implements BillDetailsService {
     @Override
     public boolean create(BillDetails object) {
         return   billDetailsDAO.create(object);
+    }
+
+    @Override
+    public List<BillDetails> getBillDetails(int BillId) {
+        return   billDetailsDAO.getBillDetails(BillId); //To change body of generated methods, choose Tools | Templates.
     }
     
 }

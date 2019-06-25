@@ -10,11 +10,13 @@ import model.Account;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import service.BillDetailsService;
 import service.BillService;
 import service.CategoryService;
-import service.NewsService;
+import service.ProductService;
 import service.NewsTypeService;
 import service.ProducerService;
 
@@ -32,22 +34,28 @@ public class ControllerBill {
 
     @Autowired
     private CategoryService categoryService;
-    
+    @Autowired
+    private ProductService productService;
     @Autowired
     private BillService billService;
-
+    @Autowired
+    private BillDetailsService billDetailsService;
     
      @RequestMapping(value = "myBills.html", method = RequestMethod.GET)
-    public String viewNews(ModelMap mm, HttpSession session) {
+    public String viewBills(ModelMap mm, HttpSession session) {
          Account account = (Account)session.getAttribute("account");
    
         mm.put("listCategory", categoryService.getAll());
        mm.put("listProducer", producerService.getAll());
-       mm.put("listBill", billService.getBillbyAccountId(account.getId()));
-     
-      
-       
+       mm.put("listBill", billService.getBillbyAccountId(account.getId()));     
         return "pages/MyBills";
     }
-    
+     @RequestMapping(value = "BillDetails/{id}.html", method = RequestMethod.GET)
+    public String viewDetails(ModelMap mm, @PathVariable("id") int BillId) {
+     
+        mm.put("listCategory", categoryService.getAll());
+       mm.put("listProducer", producerService.getAll());
+       mm.put("listDetails", billDetailsService.getBillDetails(BillId));     
+        return "pages/BillDetails";
+    }
 }

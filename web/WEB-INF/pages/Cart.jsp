@@ -14,7 +14,6 @@
         <title>Cart</title>
     </head>
     <body>
-         
         <jsp:include page="header.jsp"></jsp:include>
         <div class="container_fullwidth">
             <div class="container shopping-cart">

@@ -46,7 +46,7 @@ public class ControllerPages {
     public String viewHome(ModelMap mm, HttpSession session) {
         if(session.getAttribute("id")==null ) session.setAttribute("id", 0);
         mm.put("listCategory", categoryService.getAll());
-       mm.put("listProducer", producerService.getAll());
+        mm.put("listProducer", producerService.getAll());
         mm.put("listProductHot", productService.getListHot());
         mm.put("listProductNew", productService.getListNew());
        showMyCart( session);
@@ -63,6 +63,10 @@ public class ControllerPages {
 
     @RequestMapping(value = "contact.html", method = RequestMethod.GET)
     public String viewContact(ModelMap mm) {
+        mm.put("listCategory", categoryService.getAll());
+        mm.put("listProducer", producerService.getAll());
+        mm.put("listProductHot", productService.getListHot());
+        mm.put("listProductNew", productService.getListNew());
         return "pages/contact";
     }
 
