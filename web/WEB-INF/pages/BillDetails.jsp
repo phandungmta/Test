@@ -9,6 +9,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
         <title>Bill Details</title>
     </head>
     <body>
@@ -70,7 +71,12 @@
                                                         </h5>
                                                 </td>
                                                 <td>
-                                                        <input type="number" name="textfield" id="textfield" data-id="${item.amount}" value="${item.amount}" min="1" max="5" class="quantity" >
+                                                        <h5>
+                                                                <strong class="blue">
+                                                                        ${item.amount} 
+                                                                </strong>
+                                                        </h5>
+                                                   
                                                 </td>
                                                 <td>
                                                         <h5>
