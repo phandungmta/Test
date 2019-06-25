@@ -5,8 +5,11 @@
  */
 package controller;
 
+import java.util.List;
 import javax.servlet.http.HttpSession;
 import model.Account;
+import model.BillDetails;
+import model.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -55,7 +58,16 @@ public class ControllerBill {
      
         mm.put("listCategory", categoryService.getAll());
        mm.put("listProducer", producerService.getAll());
-       mm.put("listDetails", billDetailsService.getBillDetails(BillId));     
+       
+       
+       List<BillDetails> list= null;
+      list = billDetailsService.getBillDetails(BillId);
+       
+         for (BillDetails item : list) {
+             Product product = productService.findById( item.getId().getProductId());
+             item.setProduct(product);
+         }
+       mm.put("listDetails", list); 
         return "pages/BillDetails";
     }
 }
